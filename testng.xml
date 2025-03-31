@@ -1,9 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
-  <test thread-count="5" name="Test">
+<suite name="Suite" parallel="classes" thread-count="3">
+  <test name="chromeTest">
+    <parameter name="browser" value="chrome" />
     <classes>
-      <class name="baseClass.AppTest"/>
+<!--      <class name="testcases.ArrayTest"/>-->
+<!--      <class name="testcases.DataStructureTest"/>-->
+      <class name="testcases.GraphTest"/>
+<!--      <class name="testcases.HomeTest"/>-->
+<!--      <class name="testcases.LinkedListTest"/>-->
+<!--      <class name="testcases.LoginTest"/>-->
+<!--      <class name="testcases.QueueTest"/>-->
+<!--      <class name="testcases.RegisterTest"/>-->
+<!--      <class name="testcases.stackTest"/>-->
+<!--      <class name="testcases.TreeTest"/>-->
     </classes>
-  </test> <!-- Test -->
-</suite> <!-- Suite -->
+  </test>
+  
+  
+<!--  <test name="firefoxTest">-->
+<!--    <parameter name="browser" value="chrome" />-->
+<!--    <classes>-->
+<!--      <class name="testcases.ArrayTest"/>-->
+<!--      <class name="testcases.DataStructureTest"/>-->
+<!--      <class name="testcases.GraphTest"/>-->
+<!--      <class name="testcases.HomeTest"/>-->
+<!--      <class name="testcases.LinkedListTest"/>-->
+<!--      <class name="testcases.LoginTest"/>-->
+<!--      <class name="testcases.QueueTest"/>-->
+<!--      <class name="testcases.RegisterTest"/>-->
+<!--      <class name="testcases.stackTest"/>-->
+<!--      <class name="testcases.TreeTest"/>-->
+<!--    </classes>-->
+<!--  </test>-->
+  
+<!--  <test name="edgeTest">-->
+<!--  <parameter name="browser" value="chrome" />-->
+<!--    <classes>-->
+<!--      <class name="testcases.ArrayTest"/>-->
+<!--      <class name="testcases.DataStructureTest"/>-->
+<!--      <class name="testcases.GraphTest"/>-->
+<!--      <class name="testcases.HomeTest"/>-->
+<!--      <class name="testcases.LinkedListTest"/>-->
+<!--      <class name="testcases.LoginTest"/>-->
+<!--      <class name="testcases.QueueTest"/>-->
+<!--      <class name="testcases.RegisterTest"/>-->
+<!--      <class name="testcases.stackTest"/>-->
+<!--      <class name="testcases.TreeTest"/>-->
+<!--    </classes>-->
+    
+<!--  </test>-->
+</suite>
