@@ -1,67 +1,67 @@
 package baseClass;
 
+import java.util.Properties;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterClass;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
-import driverManager.DriverManager;  // Import DriverManager
+import driverManager.DriverManager;
 import utilities.ConfigReader;
 
 public class BaseClass {
+	
+	public WebDriver driver;
 
-    public WebDriver driver;  // Declare WebDriver instance
-    public static String browser;  // Store browser type for reference
-    private DriverManager driverManager = new DriverManager();  // Create instance of DriverManager
+	private DriverManager drivermanager= new DriverManager();
+	private static Properties prop1;
 
-    // Initialize WebDriver before any tests start
-    @BeforeClass(alwaysRun = true)
-    @Parameters("browser")  // Allows browser parameter to be passed from TestNG XML
-    public void setUp(@Optional("chrome") String browser) throws Throwable {
-        // Load configuration from config.properties
-        ConfigReader.loadConfig();
+	@BeforeSuite(alwaysRun = true)
+	public void setupSuite() {
+		prop1 = ConfigReader.initializeprop();
+		System.out.println("Before Suite: Config properties initialized.");
+	}
 
-        // Store the browser value (optional if needed for further use)
-        this.browser = browser;
+	@BeforeMethod(alwaysRun = true)
+	@Parameters("browser")
+	public void setup(@Optional("") String browser) {
+		try {
+			System.out.println("Browser received from testng.xml: " + browser);
 
-        // Initialize WebDriver using DriverManager (not Driver_SetUp)
-        driver = driverManager.initializeBrowser(browser);  // Calling the DriverManager's method
+			if (browser == null || browser.trim().isEmpty()) {
+				browser = prop1.getProperty("browser");
+				System.out.println("Using default browser from properties: " + browser);
+			}
 
-        // Ensure the WebDriver is initialized correctly
-        if (driver == null) {
-            throw new Exception("Failed to initialize WebDriver.");
-        }
+			drivermanager.initializeBrowser(browser);
+			driver = DriverManager.getDriver();
 
-        // Optionally, navigate to the base URL if specified in config
-        String url = ConfigReader.getUrl();
-        if (url != null && !url.isEmpty()) {
-            driver.get(url);  // Navigate to the URL if provided
-        }
-    }
+			driver.manage().deleteAllCookies();
+			driver.get(prop1.getProperty("URL"));
+		} catch (Exception e) {
+			System.out.println("Error in setup(): " + e.getMessage());
+			throw e;
+		}
 
-    // Cleanup after all tests are completed
-    @AfterClass(alwaysRun = true)
-    public void tearDown() {
-        // Close the WebDriver if it's initialized
-//        if (driver != null) {
-//            System.out.println("Closing driver...");
-//            driver.quit();  // Quit the WebDriver session
-//            driver = null;  // Set to null to release reference
-        }
- //   }
+	}
 
-    // Cleanup after each test to clear cookies
-    @AfterMethod(alwaysRun = true)
-    public void clearCookies() {
-        // Delete cookies if driver is initialized
-        if (driver != null) {
-            driver.manage().deleteAllCookies();  // Clear cookies for each test
-            System.out.println("Cookies cleared.");
-        }
-    }
+	@AfterMethod(alwaysRun = true)
+	public void tearDownTest(ITestResult result) {
+		
+		driver.quit();
+		DriverManager.removeDriver();
+
+	}
+
+	public static WebDriver getDriver() {
+		WebDriver driver = DriverManager.getDriver();
+		if (driver == null) {
+			throw new IllegalStateException("WebDriver instance is null. Ensure setup() is called before tests.");
+		}
+		return driver;
+	}
+
 }
-
-
-
