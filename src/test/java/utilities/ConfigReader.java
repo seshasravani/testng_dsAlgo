@@ -14,8 +14,8 @@ public class ConfigReader {
 	public static Properties initializeprop() {
 		Properties prop = new Properties();
 		File profile = new File(
-				System.getProperty("user.dir") + "/src/test/resources/dsAlgoProperties/Config.properties");
-
+				System.getProperty("user.dir") + "/src/test/resources/Config/config.properties");
+		
 		try (FileInputStream fis = new FileInputStream(profile)) {
 			prop.load(fis);
 		} catch (FileNotFoundException e) {

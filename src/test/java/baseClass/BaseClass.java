@@ -40,7 +40,7 @@ public class BaseClass {
 			driver = DriverManager.getDriver();
 
 			driver.manage().deleteAllCookies();
-			driver.get(prop1.getProperty("URL"));
+			driver.get(prop1.getProperty("url"));
 		} catch (Exception e) {
 			System.out.println("Error in setup(): " + e.getMessage());
 			throw e;

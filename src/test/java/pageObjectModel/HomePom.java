@@ -16,7 +16,9 @@ public class HomePom {
 	
 
 	public WebDriver driver = DriverManager.getDriver();
-    
+	
+	   
+	
 	// Create a WebDriverWait instance with Duration
 
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Timeout in second
@@ -27,12 +29,13 @@ public class HomePom {
 	public By contentText = By.cssSelector("div.content p");
 	public By signOutLink = By.xpath("//a[@href='/logout']");
 
-	public void openURL() {
-		System.out.println("Inside openURL-->" + driver);
-		driver.get(ConfigReader.getUrl());
-		System.out.println("2Inside openURL-->" + driver);
-
-	}
+//	public void openURL() {
+//		System.out.println("Inside openURL-->" + driver);
+//	
+//		driver.get(prop1.getProperty("url"));
+//		System.out.println("2Inside openURL-->" + driver);
+//
+//	}
 
 	// Open Time Complexity url
 

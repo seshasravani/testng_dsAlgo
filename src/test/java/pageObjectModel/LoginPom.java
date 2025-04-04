@@ -18,14 +18,16 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import driverManager.DriverManager;
 import utilities.ConfigReader;
-import utilities.ExcelReader;
+import utilities.ExcelReader1;
 //import utilities.ExcelReader1;
 
 public class LoginPom {
 
 	WebDriver driver = DriverManager.getDriver();
-	ExcelReader excelReader = new ExcelReader();
+	ExcelReader1 excelReader1 = new ExcelReader1();
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	
+	Properties prop =  ConfigReader.initializeprop();
 	
 	//X paths for web elements on login page 
 	
@@ -57,6 +59,14 @@ public class LoginPom {
 	 public void loginWithValidCredentials(String username, String password) throws InterruptedException {
 	    	driver.findElement(usernameTextBox).sendKeys(username);
 	    	driver.findElement(passwordTextBox).sendKeys(password);
+	    	driver.findElement(loginBtn).click();
+	    }
+	 
+	 //Common login method for DS Algo portal 
+	 public void dsAlgoLogin() {
+		 
+	    	driver.findElement(usernameTextBox).sendKeys((prop.getProperty("username")));
+	    	driver.findElement(passwordTextBox).sendKeys((prop.getProperty("password")));
 	    	driver.findElement(loginBtn).click();
 	    }
 	 
