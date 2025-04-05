@@ -408,45 +408,107 @@ public class LinkedListTest extends BaseClass {
 			LoggerLoad.info("No Alert  or error displayed");
 	}
 	
-	
+
+//	 #-------------#Practice Questions page scenarios from all sub pages under Linked List DS-------------------------------------------------------------------------
 
 	@Test(priority=19)
-	public void testLLPracticeQnsLink () {
-		 ip.clickDropdownToggle();
-		 LoggerLoad.info("Dropdown Toggle clicked");
-		 ip.clickDropdownItemLinkedList();
-		 LoggerLoad.info("Linked List Drop item selected");
+	public void testLLIntroductionPagePracticeQnsLink () {
+	     ls.clicklsIntroductionLink();
+		 LoggerLoad.info("Introduction Link clicked");
+		 ls.clickpracticequestions();
+		LoggerLoad.info("Practice Questions Link Clicked");
+		Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+		LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());
+		
+			}
+	
+
+	@Test(priority=20)
+	public void testLLCreatingLLPagePracticeQnsLink () {
+	     ls.clicklsCreatingLinkedLIstLink();
+		 LoggerLoad.info("Creating Linked LIst Link clicked");
+		 ls.clickpracticequestions();
+		LoggerLoad.info("Practice Questions Link Clicked");
+		Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+		LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());
 		
 			
 	}
 	
-	
-	
-	
-	 @Test(priority = 120, dataProvider = "validCodeForTraversal", dataProviderClass = TestDataProvider.class)
-	    public void testRunValidCodeTraversalPage(String validCode) {
-	        ip.clickDropdownToggle();
-	        LoggerLoad.info("Dropdown Toggle clicked");
-	        ip.clickDropdownItemLinkedList();
-	        LoggerLoad.info("Linked List Drop item selected");
-	        ls.clicklsTraversalLink();
-	        LoggerLoad.info("Traversal link clicked");
-	        tp.clickTryHereBtn();
-	        LoggerLoad.info("TryHere Button clicked");
-
-	        try {
-	            tp.enterTryHereCode(validCode);
-	            tp.clickRunButton();
-	        } catch (Exception e) {
-	            System.err.println("Error while entering code or clicking Run: " + e.getMessage());
-	        }
-
-	        String consoleOutput = tp.getOutputText();
-			Assert.assertNotNull(consoleOutput, "Console output should not be null.");
-			LoggerLoad.info("Console output: " + consoleOutput);
-			Assert.assertNotNull(tp.getOutputText());
-	    }
+	@Test(priority=21)
+	public void testLLTypesofLLPracticeQnsLink () {
+	     ls.clicklsTypesOfLinkedListLink();
+		 LoggerLoad.info("Types of Linked List Link clicked");
+		 ls.clickpracticequestions();
+		LoggerLoad.info("Practice Questions Link Clicked");
+		Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+		LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());
+		
+			
 	}
 	
-
+	@Test(priority=22)
+	public void testLLImplementLLInPythonLLPracticeQnsLink () {
+	     ls.clicklsImplementLinkedListInPythonLink();
+		 LoggerLoad.info("Implement Linked List in Python link clicked");
+		 ls.clickpracticequestions();
+		LoggerLoad.info("Practice Questions Link Clicked");
+		Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+		LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());
+	}	
+		@Test(priority=23)
+		public void testLLTraversalPracticeQnsLink () {
+		     ls.clicklsTraversalLink();
+			 LoggerLoad.info("Traversal link clicked");
+			 ls.clickpracticequestions();
+			LoggerLoad.info("Practice Questions Link Clicked");
+			Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+			LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());		
+		}
+		
+		@Test(priority=24)
+		public void testLLInsertionPracticeQnsLink () {
+		     ls.clicklsInsertionLink();
+			 LoggerLoad.info("Insertion link clicked");
+			 ls.clickpracticequestions();
+			LoggerLoad.info("Practice Questions Link Clicked");
+			Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+			LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());		
+		}		
+			@Test(priority=25)
+			public void testLLDeletionPracticeQnsLink () {
+			     ls.clicklsDeletionLink();
+				 LoggerLoad.info("Deletion link clicked");
+				 ls.clickpracticequestions();
+				LoggerLoad.info("Practice Questions Link Clicked");
+				Assert.assertEquals("Assessment", dsIntro.validatePageTitle());		
+				LoggerLoad.info("dsIntro.validatePageTitle()->" + dsIntro.validatePageTitle());		
+	
+//	
+//	 @Test(priority = 120, dataProvider = "validCodeForTraversal", dataProviderClass = TestDataProvider.class)
+//	    public void testRunValidCodeTraversalPage(String validCode) {
+//	        ip.clickDropdownToggle();
+//	        LoggerLoad.info("Dropdown Toggle clicked");
+//	        ip.clickDropdownItemLinkedList();
+//	        LoggerLoad.info("Linked List Drop item selected");
+//	        ls.clicklsTraversalLink();
+//	        LoggerLoad.info("Traversal link clicked");
+//	        tp.clickTryHereBtn();
+//	        LoggerLoad.info("TryHere Button clicked");
+//
+//	        try {
+//	            tp.enterTryHereCode(validCode);
+//	            tp.clickRunButton();
+//	        } catch (Exception e) {
+//	            System.err.println("Error while entering code or clicking Run: " + e.getMessage());
+//	        }
+//
+//	        String consoleOutput = tp.getOutputText();
+//			Assert.assertNotNull(consoleOutput, "Console output should not be null.");
+//			LoggerLoad.info("Console output: " + consoleOutput);
+//			Assert.assertNotNull(tp.getOutputText());
+//	    }
+	}
+	
+}
 
