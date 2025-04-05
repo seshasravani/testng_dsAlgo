@@ -13,14 +13,22 @@ public class TestDataProvider {
 	    static ExcelReader excelReader = new ExcelReader();
 
 	
-	    @DataProvider(name = "validCodeForTraversal")
-	    public Object[][] getValidCodeForTraversal() throws IOException {
-	        List<Map<String, String>> testData = excelReader.readFromExcel(EXCEL_PATH, "tryEditorCode");
-	        Object[][] data = new Object[testData.size()][1];  // 1 column for code
-
-	        for (int i = 0; i < testData.size(); i++) {
-	            data[i][0] = testData.get(i).get("validCode"); // Fetching code from Excel
-	        }
-	        return data;
+//	    @DataProvider(name = "validCodeForTraversal")
+//	    public Object[][] getValidCodeForTraversal() throws IOException {
+//	        List<Map<String, String>> testData = excelReader.readFromExcel(EXCEL_PATH, "tryEditorCode");
+//	        Object[][] data = new Object[testData.size()][1];  // 1 column for code
+//
+//	        for (int i = 0; i < testData.size(); i++) {
+//	            data[i][0] = testData.get(i).get("validCode"); // Fetching code from Excel
+//	        }
+//	        return data;
+//	    }
+	    
+	    
+	    @DataProvider(name = "invalidCodeData")
+	    public Object[][] getInvalidCodeData() {
+	        return new Object[][] {
+	            {"tryEditorCode", 1}
+	        };
 	    }
 	}
