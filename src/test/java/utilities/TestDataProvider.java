@@ -4,43 +4,25 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
+import org.apache.commons.compress.archivers.dump.InvalidFormatException;
 import org.testng.annotations.DataProvider;
-
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 public class TestDataProvider {
 	
-	private static final String EXCEL_PATH = "src/test/resources/Excel/TestData.xlsx";
+	//private static final String EXCEL_PATH = "src/test/resources/Excel/TestData.xlsx";
 	ExcelReader excelReader = new ExcelReader();
 	
-	
-	// ********** LOGIN FEATURE DATA PROVIDER **********
-	
-	@DataProvider(name = "alertMessagesForEmptyFields")
-	public Object[][] getAlertMessagesForEmptyFields() {
-		return new Object[][] { { "Please fill out this field." } };
+	@DataProvider(name = "invalidCodeData")
+	public Object[][] getInvalidCodeData() throws InvalidFormatException, IOException {
+		System.out.println("Inside getInvalidCodeData() method");
+	    List<Map<String, String>> testData = excelReader.readFromExcel("src/test/resources/Excel/TestData.xlsx", "tryEditorCode");
+	    
+	    Object[][] data = new Object[testData.size()][1]; // Only one column (pCode)
+
+	    for (int i = 0; i < testData.size(); i++) {
+	        data[i][0] = testData.get(i).get("pCode"); // Fetch code from "pCode" column
+	    }
+
+	    return data;
 	}
-	
-	
-		// ********** GENERIC METHOD TO READ EXCEL DATA **********
-	public void enterLoginFormFields(String sheetname, int row)
-			throws InvalidFormatException, IOException, OpenXML4JException, InterruptedException {
-		LoggerLoad.info("Inside enterLoginFormFields");
-
-		List<Map<String, String>> testdata = excelReader.readFromExcel("src/test/resources/Excel/TestData.xlsx", sheetname);
-		LoggerLoad.info("logintestdata");
-	
-		
-		String username = testdata.get(row).get("username");
-		enterUsernameTxt(username);
-		LoggerLoad.info("Fetched username from Excel: " + username);
-		
-		String password = testdata.get(row).get("password");
-		LoggerLoad.info("Fetched password from Excel: " + password);
-		enterPasswordTxt(password);
-	}	
-	}
-
-
-
+}

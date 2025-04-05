@@ -1,7 +1,6 @@
 package testcases;
 
 import java.io.IOException;
-import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -11,6 +10,7 @@ import pageObjectModel.HomePom;
 import pageObjectModel.IntroductionPagePom;
 import pageObjectModel.LoginPom;
 import pageObjectModel.RegisterPom;
+import utilities.ExcelReader;
 import utilities.TestDataProvider;
 
 
@@ -20,6 +20,9 @@ public class LoginTest extends BaseClass {
 	private HomePom hp;
 	private IntroductionPagePom ip;
 	private RegisterPom regPage;
+	
+	private static final String EXCEL_PATH = "src/test/resources/Excel/TestData.xlsx";
+	ExcelReader excelReader = new ExcelReader();
 
 	@BeforeMethod
 	public void loginToDSPortal() {
@@ -38,16 +41,16 @@ public class LoginTest extends BaseClass {
 	}
 
 	@Test(priority = 1, dataProvider = "alertMessagesForEmptyFields", dataProviderClass = TestDataProvider.class)
-	  public void testLoginButtonWithEmptyCredentials(String expectedAlertMessage)
-	            throws IOException, InterruptedException, OpenXML4JException {
+	public void testLoginWithEmptyCredentials(String username, String password, String expectedAlertMessage) {
+	    // Use dynamic data from the DataProvider
+	    login.enterLoginDetailsforDP(username, password); // Now, it uses the username and password from the Excel data
+	    login.clickloginBtn();
 
-	        login.enterLoginFormFields("login", 0);
-	        login.clickloginBtn();
-
-	        String actualAlertMsg = regPage.switchToElementAndGetValidationMessage();
-	        Assert.assertTrue(actualAlertMsg.contains(expectedAlertMessage),
-	                "Expected: " + expectedAlertMessage + ", but got: " + actualAlertMsg);
-	    }
+	    // Fetch the actual alert message and assert it with the expected one
+	    String actualAlertMsg = regPage.switchToElementAndGetValidationMessage();
+	    Assert.assertTrue(actualAlertMsg.contains(expectedAlertMessage),
+	            "Expected: " + expectedAlertMessage + ", but got: " + actualAlertMsg);
+	}
 	
 }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
-import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -62,7 +62,7 @@ public class LoginPom {
 		}
 
 		public void enterLoginFormFields(String sheetname, int row)
-				throws InvalidFormatException, IOException, OpenXML4JException, InterruptedException {
+				throws InvalidFormatException, IOException, InterruptedException {
 			LoggerLoad.info("Inside enterLoginFormFields");
 	
 			List<Map<String, String>> testdata = excelReader.readFromExcel("src/test/resources/Excel/TestData.xlsx", sheetname);
@@ -77,5 +77,16 @@ public class LoginPom {
 			LoggerLoad.info("Fetched password from Excel: " + password);
 			enterPasswordTxt(password);
 		}	
+		
+		//For Data Provider -> read data from excel 
+		
+		public void enterLoginDetailsforDP(String username, String password) {
+		    if (username != null && !username.isEmpty()) {
+		        enterUsernameTxt(username);
+		    }
+		    if (password != null && !password.isEmpty()) {
+		        enterPasswordTxt(password);
+		    }
+		}
 
 }
