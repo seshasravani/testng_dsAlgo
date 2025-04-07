@@ -36,13 +36,19 @@ public class TryEditorDsPom {
 		act.moveToElement(driver.findElement(tryHereButton)).click().perform();
 		LoggerLoad.info("Clicked the Try Here button.");
 	}
-	
-//	public void enterTryHereCode(String pCode) {
-//	    LoggerLoad.info("Entering Code: " + pCode);
-//
-//	   // textAreaForCode.clear(); // Clears any previous code
-//	   // textAreaForCode.sendKeys(pCode);
-//	}
+
+	public void enterTryHereCode(String pCode) {
+	    LoggerLoad.info("Entering Code: " + pCode);
+
+	   WebElement codeMirror = driver
+				.findElement(textAreaForCode);
+
+		Actions actions = new Actions(driver);
+		actions.moveToElement(codeMirror).click().perform();
+
+		WebElement textArea = codeMirror.findElement(By.xpath("//textarea[@tabindex='0']"));
+		textArea.sendKeys(pCode);
+	}
 	
 	public void enterTryHereCode(String sheetName, int row)
 			throws InvalidFormatException, IOException, OpenXML4JException {
