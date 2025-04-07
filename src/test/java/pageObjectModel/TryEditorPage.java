@@ -83,6 +83,8 @@ public class TryEditorPage {
 		actions.moveToElement(codeMirror).click().perform();
 
 		WebElement textArea = codeMirror.findElement(By.xpath(".//textarea"));
+		textArea.sendKeys(Keys.CONTROL + "a");
+		textArea.sendKeys(Keys.DELETE);
 		textArea.sendKeys(code);
 	}
 
