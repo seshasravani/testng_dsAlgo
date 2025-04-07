@@ -1,15 +1,34 @@
 package utilities;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Map;
-
-import org.apache.commons.compress.archivers.dump.InvalidFormatException;
 import org.testng.annotations.DataProvider;
 
 public class TestDataProvider {
+
+
+		@DataProvider(name = "RegisterPageData1")
+		public Object[][] getRegisterData() {
+			return ExcelReader.readExcel("register");
+		}
+		 
+			
+		@DataProvider(name = "loginData")
+		public Object[][] loginData() {
+		    return ExcelReader.readExcel("Login"); // Make sure the sheet name is correct
+		}
+
+		@DataProvider(name = "codeExecutionDataInvalid")
+		public Object[][] getTryHereCodeDataInvalid() {
+			return ExcelReader.readExcel("editor-invalid");
+		}
+		
+		@DataProvider(name = "codeExecutionDataValid")
+		public Object[][] getTryHereCodeDataValid() {
+			return ExcelReader.readExcel("editor-valid");
+		}
+		
 	
-	    private static final String EXCEL_PATH = "src/test/resources/Excel/TestData.xlsx";
+	
+	 /*   private static final String EXCEL_PATH = "src/test/resources/Excel/TestData.xlsx";
 	    static ExcelReader excelReader = new ExcelReader();
 
 	
@@ -23,4 +42,5 @@ public class TestDataProvider {
 	        }
 	        return data;
 	    }
+	    */
 	}
