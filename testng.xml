@@ -6,8 +6,10 @@
     <listeners>
        <!-- <listener class-name="Listeners.MyListeners" />
         <listener class-name="Listeners.MyAnnotationTransformer" />-->
-        <listener class-name="io.qameta.allure.testng.AllureTestNGListener"/>
+       <!--- <listener class-name="io.qameta.allure.testng.AllureTestNGListener"/>-->
+        <listener class-name="Listeners.AllureListener"/>
         <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter" />
+         <listener class-name="Listeners.ExtentTestListener" />
         <!--<listener class-name="com.aventstack.chaintest.testng.ChainTestListener"/>-->
          
     </listeners>
