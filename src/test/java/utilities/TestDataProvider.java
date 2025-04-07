@@ -11,11 +11,10 @@ public class TestDataProvider {
 	public Object[][] getRegisterData() {
 		return ExcelReader.readExcel("register");
 	}
-	 
-		
+
 	@DataProvider(name = "loginData")
 	public Object[][] loginData() {
-	    return ExcelReader.readExcel("Login"); // Make sure the sheet name is correct
+	    return ExcelReader.readExcel("Login"); 
 	}
 
 	@DataProvider(name = "codeExecutionDataInvalid")
@@ -27,6 +26,5 @@ public class TestDataProvider {
 	public Object[][] getTryHereCodeDataValid() {
 		return ExcelReader.readExcel("editor-valid");
 	}
-	
-	
+		
 }

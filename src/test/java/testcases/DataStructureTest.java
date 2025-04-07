@@ -14,6 +14,7 @@ import pageObjectModel.LoginPom;
 import pageObjectModel.ScrollAndClick;
 import pageObjectModel.TryEditorDsPom;
 import pageObjectModel.TryEditorPage;
+import utilities.ExtentTestManager;
 import utilities.LoggerLoad;
 import utilities.TestDataProvider;
 
@@ -31,6 +32,7 @@ public class DataStructureTest extends BaseClass {
 
     @BeforeMethod
     public void loginToDSIntroduction() {
+      
         dsIntro = new DataStructureIntroPom();
         hp = new HomePom();
         tp = new TryEditorDsPom();
@@ -50,6 +52,7 @@ public class DataStructureTest extends BaseClass {
 
     @Test(priority = 1)
     public void testDSIntroLaunchPage() {
+    	
     	Assert.assertTrue(dsIntro.validateElementDisplayed(dsIntro.dsPageTitle));
 		Assert.assertEquals(dsIntro.getTextForElement(dsIntro.dsPageTitle), "Data Structures-Introduction");
 		LoggerLoad.info("title is+" + "Data Structures-Introduction");
@@ -59,6 +62,7 @@ public class DataStructureTest extends BaseClass {
     @Test(priority = 2)
     //retryAnalyzer=Listeners.MyRetryAnalyzer.class
     public void testDSIntroTimeComplexityLink() {
+    	  //ExtentTestManager.getTest();
     	sc.clickTimeComplexityLink();
 		LoggerLoad.info("Time Complexity Link is clicked");
 		String pageTitle = driver.getTitle();
@@ -70,6 +74,7 @@ public class DataStructureTest extends BaseClass {
     
     @Test(priority = 3)
     public void testDSIntroTimeComplexityTryHereLink() {
+    	
     	sc.clickTimeComplexityLink();
 		LoggerLoad.info("TimeComplexity Link Clicked");
 		tp.clickTryHereBtn();
@@ -82,6 +87,7 @@ public class DataStructureTest extends BaseClass {
     
     @Test(priority = 4)
     public void testDSIntroTimeComplexityTryHereLinkNoCode() {
+    	 
     	sc.clickTimeComplexityLink();
 		LoggerLoad.info("TimeComplexity Link Clicked");
 		tp.clickTryHereBtn();
@@ -94,6 +100,7 @@ public class DataStructureTest extends BaseClass {
     
     @Test(dataProvider = "codeExecutionDataInvalid", dataProviderClass = TestDataProvider.class, priority = 5)
     public void testDSIntroTimeComplexityTryHereWithInvalidCode(String code, String expectedResult) {
+    	
         ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
         sc.clickTimeComplexityLink();
         tp.clickTryHereBtn();
@@ -109,7 +116,8 @@ public class DataStructureTest extends BaseClass {
     }
     
     @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 6)
-    public void testDSIntroTimeComplexityTryHereWithValidCode(String code, String expectedResult) {
+        public void testDSIntroTimeComplexityTryHereWithValidCode(String code, String expectedResult) {
+    	 
         ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
         sc.clickTimeComplexityLink();
         tp.clickTryHereBtn();
@@ -131,6 +139,7 @@ public class DataStructureTest extends BaseClass {
     //retryAnalyzer=Listeners.MyRetryAnalyzer.class
     
     public void testDSIntroPracticeQnsLink() {
+		  
     	sc.clickTimeComplexityLink();
     	LoggerLoad.info("TimeComplexity Link Clicked");
 		dsIntro.clickPracticeQuestionsLink();

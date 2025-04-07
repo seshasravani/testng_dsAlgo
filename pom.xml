@@ -100,12 +100,19 @@
         <version>2.13.8</version> <!-- Compatible version -->
     </dependency>
     
-      <!-- ExtentReports for TestNG -->
-    <dependency>
-        <groupId>com.aventstack</groupId>
-        <artifactId>extentreports</artifactId>
-        <version>5.1.2</version> <!-- Use the latest version -->
-    </dependency>
+  <!-- ExtentReports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.1.1</version>
+</dependency>
+
+<!-- For HTML Reporter -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports-testng-adapter</artifactId>
+    <version>1.0.7</version>
+</dependency>
     
   
     <dependency>
