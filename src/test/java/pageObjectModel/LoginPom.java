@@ -4,14 +4,19 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Properties;
 
-
+import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
 import driverManager.DriverManager;
+import io.netty.handler.timeout.TimeoutException;
 import utilities.ConfigReader;
 import utilities.ExcelReader;
 import utilities.LoggerLoad;
@@ -24,11 +29,13 @@ public class LoginPom {
 	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	
 	Properties prop =  ConfigReader.initializeprop();
+	
 		
 	public By usernameTextBox = By.id("id_username");
 	public By passwordTextBox = By.id("id_password");
 	public By loginBtn =   By.xpath("//input[@value='Login']");
-	public By alertMsg = By.cssSelector(".alert.alert-primary");
+	//public By alertMsg = By.cssSelector(".alert.alert-primary");
+	public By loggedinmessage = By.xpath("//div[contains(text(),'You are logged in')]");
 	
 	
 	public void enterUsernameTxt(String username) {
@@ -48,45 +55,63 @@ public class LoginPom {
 	    	driver.findElement(loginBtn).click();
 	    }
     
-    //Common login method for DS Algo portal 
     public void dsAlgoLogin() {
     	
-    driver.findElement(usernameTextBox).sendKeys((prop.getProperty("username")));
-	driver.findElement(passwordTextBox).sendKeys((prop.getProperty("password")));
-	driver.findElement(loginBtn).click();
-	
-}
+        driver.findElement(usernameTextBox).sendKeys((prop.getProperty("username")));
+    	driver.findElement(passwordTextBox).sendKeys((prop.getProperty("password")));
+    	driver.findElement(loginBtn).click();
+    	
+    }
 	 
 	public void passwordTextField(String password) {
 			driver.findElement(passwordTextBox).sendKeys(password);
 		}
-
-		public void enterLoginFormFields(String sheetname, int row)
-				throws InvalidFormatException, IOException, InterruptedException {
-			LoggerLoad.info("Inside enterLoginFormFields");
 	
-			List<Map<String, String>> testdata = excelReader.readFromExcel("src/test/resources/Excel/TestData.xlsx", sheetname);
-			LoggerLoad.info("logintestdata");
-		
-			
-			String username = testdata.get(row).get("username");
-			enterUsernameTxt(username);
-			LoggerLoad.info("Fetched username from Excel: " + username);
-			
-			String password = testdata.get(row).get("password");
-			LoggerLoad.info("Fetched password from Excel: " + password);
-			enterPasswordTxt(password);
-		}	
-		
-		//For Data Provider -> read data from excel 
-		
-		public void enterLoginDetailsforDP(String username, String password) {
-		    if (username != null && !username.isEmpty()) {
-		        enterUsernameTxt(username);
-		    }
-		    if (password != null && !password.isEmpty()) {
-		        enterPasswordTxt(password);
-		    }
-		}
+	public String loggedinmessage() {
+		return ((WebElement) loggedinmessage).getText();
+}
+	
+	public String getLoginValidationMessage1() {
+	    try {
+	        WebElement successMsg = driver.findElement(loggedinmessage);
+	        if (successMsg.isDisplayed()) {
+	            return successMsg.getText().trim();
+	        }
+	    } catch (Exception e) {
+	        // Ignore, element not present
+	    }
+
+	    try {
+	        WebElement alert = driver.findElement(By.cssSelector(".alert.alert-primary"));
+	        if (alert.isDisplayed()) {
+	            return alert.getText().trim();
+	        }
+	    } catch (Exception e) {
+	        // Ignore, element not present
+	    }
+
+	    return "No validation message available";
+	}
+
+	public String credentialsResult(String username, String password) {
+	    try {
+	        if (username == null || username.trim().isEmpty()) {
+	            WebElement usernameField = driver.findElement(usernameTextBox);
+	            return usernameField.getAttribute("validationMessage");
+	        } else if (password == null || password.trim().isEmpty()) {
+	            WebElement passwordField = driver.findElement(passwordTextBox);
+	            return passwordField.getAttribute("validationMessage");
+	        }
+
+	        // Try checking the alert messages
+	        WebElement alertMessage = driver.findElement(By.cssSelector(".alert.alert-primary"));
+	        return alertMessage.getText().trim();
+	    } catch (Exception e) {
+	        LoggerLoad.warn("Could not retrieve validation message: " + e.getMessage());
+	        return "No validation message available";
+	    }
+	}
+
+
 
 }
