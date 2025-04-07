@@ -1,67 +1,70 @@
 package driverManager;
 
 import java.time.Duration;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-
-import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverManager {
 
-	// ThreadLocal to ensure separate WebDriver instances for each test thread
-	private static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-	public WebDriver driver;
+	private static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<>();
 
-	public WebDriver  initializeBrowser(String browser) throws Exception {
+	public WebDriver initializeBrowser(String browser) {
+		if (browser == null || browser.isEmpty()) {
+			throw new IllegalArgumentException("Browser name must not be null or empty.");
+		}
 
-				if (threadDriver.get() == null) {  // Only initialize if driver is not already set
-            switch (browser.toLowerCase()) {
-                case "chrome":
-                	
-                	WebDriverManager.chromedriver().clearDriverCache();
-                	
-                	  driver = new ChromeDriver();
-                    break;
-                case "firefox":
-                    WebDriverManager.firefoxdriver().clearDriverCache();;  // Automatically manage the correct version
-                    driver = new FirefoxDriver();
-                    
-                    break;
-                case "edge":
-                    WebDriverManager.edgedriver().create();  // Automatically manage the correct version
-                    driver = new EdgeDriver();
-                    break;
-                default:
-                    throw new Exception("Browser not supported: " + browser);
-            }
-	        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-	        driver.manage().window().maximize();
-	        driver.manage().deleteAllCookies();
-	        threadDriver.set(driver);  // Assign driver to thread-local storage
-	    }
-	    return threadDriver.get();
+		try {
+			switch (browser.toLowerCase()) {
+			case "chrome":
+				// ChromeOptions chromeOptions = new ChromeOptions();
+				// chromeOptions.addArguments("headless");
+				tlDriver.set(new ChromeDriver());
+				break;
+			case "firefox":
+				// FirefoxOptions firefoxOptions = new FirefoxOptions();
+				// firefoxOptions.addArguments("headless");
+				tlDriver.set(new FirefoxDriver());
+				break;
+			case "edge":
+				// EdgeOptions edgeOptions = new EdgeOptions();
+				// edgeOptions.addArguments("headless");
+				tlDriver.set(new EdgeDriver());
+				break;
+			default:
+				throw new IllegalArgumentException("Unsupported browser: " + browser);
+			}
+		} catch (Exception e) {
+			System.err.println("Error initializing browser: " + e.getMessage());
+			throw e;
+		}
 
+		WebDriver driver = getDriver();
+		driver.manage().deleteAllCookies();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+
+		return driver;
 	}
 
-	// Close the driver for the current thread
-	public void closeDriver() {
-//		if (threadDriver.get() != null) {
-//			threadDriver.get().quit();
-//			threadDriver.remove(); // Clean up the thread-local variable
-//		}
-	}
-
-	// Get the WebDriver instance for the current thread
 	public static WebDriver getDriver() {
-		return threadDriver.get();
+		WebDriver driver = tlDriver.get();
+		if (driver == null) {
+			throw new IllegalStateException("WebDriver is not initialized. Did you call initializeBrowser?");
+		}
+		return driver;
 	}
 
-	// Delete all cookies for the current thread's driver
-	public void deleteAllCookies() {
-		if (threadDriver.get() != null) {
-			threadDriver.get().manage().deleteAllCookies();
+	public static void removeDriver() {
+		WebDriver driver = tlDriver.get();
+		if (driver != null) {
+			driver.quit();
+			tlDriver.remove();
 		}
 	}
 }

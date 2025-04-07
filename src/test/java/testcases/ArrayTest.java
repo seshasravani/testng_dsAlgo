@@ -1,5 +1,9 @@
 package testcases;
 
-public class ArrayTest {
+import baseClass.BaseClass;
+
+public class ArrayTest extends BaseClass {
+	
+	
 
 }
