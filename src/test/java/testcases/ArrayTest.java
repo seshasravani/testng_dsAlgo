@@ -369,121 +369,116 @@ public class ArrayTest extends BaseClass {
 			Assert.assertNotNull(tp.getOutputText());	  
 	  }
 
-/*	
 //TC26	
 	@Test(dataProvider = "codeExecutionDataInvalid", dataProviderClass = TestDataProvider.class,priority=26)
-	public void testMaxConsecutiveOnesInvalidCode() {
-		ap.clickarraysInPythonLink();
-		LoggerLoad.info("Arrays in Python link clicked");
+	public void testMaxConsecutiveOnesInvalidCode(String code, String expectedResult) throws InterruptedException {
+		ap.clickapplicationsOfArrayLink();
+		LoggerLoad.info("Applications of Array link clicked");
 		ap.clickPracticeQuestionsLink();
 		LoggerLoad.info("Practice Questions Link Clicked");
 		ap.clickMaxConsecutiveOnes();
 		LoggerLoad.info("Max Consecutive Ones Link Clicked");
+		 TryEditorPage tryEditor = new TryEditorPage();
+	        ChainTestListener.log("Executing code: " + code);
+	        tryEditor.enteringCode(code);	        
+	        tp.clickRunButton();
+	        Assert.assertEquals(true, tp.handleAlert());
+			LoggerLoad.info("Alert displayed");
+	}
 
-		try {
-
-			tp.enterTryHereCode("tryEditorCode", 1);
-			tp.clickRunButton();
-		} catch (Exception e) {
-			System.err.println("Error while entering code or clicking Run: " + e.getMessage());
-		}
-	} 
-/*
 //TC27
-	@Test(priority=27)
-	public void testMaxConsecutiveOnesValidCode() {
-		ap.clickarraysInPythonLink();
-		LoggerLoad.info("Arrays in Python link clicked");
+	@Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class,priority=27)
+	public void testMaxConsecutiveOnesValidCode(String code, String expectedResult) throws InterruptedException {
+		ap.clickapplicationsOfArrayLink();
+		LoggerLoad.info("Applications of Array link clicked");
 		ap.clickPracticeQuestionsLink();
 		LoggerLoad.info("Practice Questions Link Clicked");
 		ap.clickMaxConsecutiveOnes();
 		LoggerLoad.info("Max Consecutive Ones Link Clicked");
-
-		try {
-
-			tp.enterTryHereCode("tryEditorCode", 0);
-			tp.clickRunButton();
-		} catch (Exception e) {
-			System.err.println("Error while entering code or clicking Run: " + e.getMessage());
-		}
-	} 
+		TryEditorPage tryEditor = new TryEditorPage();
+        ChainTestListener.log("Executing code: " + code);
+        tryEditor.enteringCode(code);	        
+        tp.clickRunButton();	      
+        String consoleOutput = tp.getOutputText();
+		Assert.assertNotNull(consoleOutput, "Console output should not be null.");
+		LoggerLoad.info("Console output: " + consoleOutput);
+		Assert.assertNotNull(tp.getOutputText());	  
+  }
 	
 //TC28
-	@Test(priority=28)
-	public void testFindNumbersWithEvenNumberOfDigitsInvalidCode() {
-		ap.clickarraysUsingListLink();
-		LoggerLoad.info("Arrays Using List link clicked");
+	@Test(dataProvider = "codeExecutionDataInvalid", dataProviderClass = TestDataProvider.class,priority=28)
+	public void testFindNumbersWithEvenNumberOfDigitsInvalidCode(String code, String expectedResult) throws InterruptedException {
+		ap.clickapplicationsOfArrayLink();
+		LoggerLoad.info("Applications of Array link clicked");
 		ap.clickPracticeQuestionsLink();
 		LoggerLoad.info("Practice Questions Link Clicked");
 		ap.clickFindNumWithEvenNumOfDigits();
 		LoggerLoad.info("Find Numbers with Even Number of Digits Link Clicked");
-
-		try {
-
-			tp.enterTryHereCode("tryEditorCode", 1);
-			tp.clickRunButton();
-		} catch (Exception e) {
-			System.err.println("Error while entering code or clicking Run: " + e.getMessage());
-		}
+		 TryEditorPage tryEditor = new TryEditorPage();
+	        ChainTestListener.log("Executing code: " + code);
+	        tryEditor.enteringCode(code);	        
+	        tp.clickRunButton();
+	        Assert.assertEquals(true, tp.handleAlert());
+			LoggerLoad.info("Alert displayed");
 	}
 
 //TC29
-	@Test(priority=29)
-	public void testFindNumbersWithEvenNumberOfDigitValidCode() {
-		ap.clickarraysUsingListLink();
-		LoggerLoad.info("Arrays Using List link clicked");
+	@Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class,priority=29)
+	public void testFindNumbersWithEvenNumberOfDigitValidCode(String code, String expectedResult) throws InterruptedException {
+		ap.clickapplicationsOfArrayLink();
+		LoggerLoad.info("Applications of Array link clicked");
 		ap.clickPracticeQuestionsLink();
 		LoggerLoad.info("Practice Questions Link Clicked");
 		ap.clickFindNumWithEvenNumOfDigits();
 		LoggerLoad.info("Find Numbers with Even Number of Digits Link Clicked");
-
-		try {
-
-			tp.enterTryHereCode("tryEditorCode", 0);
-			tp.clickRunButton();
-		} catch (Exception e) {
-			System.err.println("Error while entering code or clicking Run: " + e.getMessage());
-		}
+		TryEditorPage tryEditor = new TryEditorPage();
+        ChainTestListener.log("Executing code: " + code);
+        tryEditor.enteringCode(code);	        
+        tp.clickRunButton();	      
+        String consoleOutput = tp.getOutputText();
+		Assert.assertNotNull(consoleOutput, "Console output should not be null.");
+		LoggerLoad.info("Console output: " + consoleOutput);
+		Assert.assertNotNull(tp.getOutputText());	  
+		
 	}
 	
 //TC30
-	@Test(priority=30)
-	public void testSquaresOfASortedArrayPracticeInvalidCode() {
-		ap.clickbasicOperationsInListsLink();
-		LoggerLoad.info("Basic Operations In Lists link clicked");
+	@Test(dataProvider = "codeExecutionDataInvalid", dataProviderClass = TestDataProvider.class,priority=30)
+	public void testSquaresOfASortedArrayPracticeInvalidCode(String code, String expectedResult) throws InterruptedException {
+		ap.clickapplicationsOfArrayLink();
+		LoggerLoad.info("Applications of Array link clicked");
 		ap.clickPracticeQuestionsLink();
 		LoggerLoad.info("Practice Questions Link Clicked");
 		ap.clickSquaresOfASortedArray();
 		LoggerLoad.info("Squares of a Sorted Array Link Clicked");
-
-		try {
-
-			tp.enterTryHereCode("tryEditorCode", 1);
-			tp.clickRunButton();
-		} catch (Exception e) {
-			System.err.println("Error while entering code or clicking Run: " + e.getMessage());
-		}
+		 TryEditorPage tryEditor = new TryEditorPage();
+	        ChainTestListener.log("Executing code: " + code);
+	        tryEditor.enteringCode(code);	        
+	        tp.clickRunButton();
+	        Assert.assertEquals(true, tp.handleAlert());
+			LoggerLoad.info("Alert displayed");		
 
 	}
 	
 //TC31
-	@Test(priority=31)
-	public void testSquaresOfASortedArrayPracticeValidCode() throws InterruptedException {
-		ap.clickbasicOperationsInListsLink();
-		LoggerLoad.info("Basic Operations In Lists link clicked");
+	@Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class,priority=31)
+	public void testSquaresOfASortedArrayPracticeValidCode(String code, String expectedResult) throws InterruptedException { 
+		ap.clickapplicationsOfArrayLink();
+		LoggerLoad.info("Applications of Array link clicked");
 		ap.clickPracticeQuestionsLink();
 		LoggerLoad.info("Practice Questions Link Clicked");
 		ap.clickSquaresOfASortedArray();
 		LoggerLoad.info("Squares of a Sorted Array Link Clicked");
-
-		try {
-
-			tp.enterTryHereCode("tryEditorCode", 0);
-			tp.clickRunButton();
-		} catch (Exception e) {
-			System.err.println("Error while entering code or clicking Run: " + e.getMessage());
+		TryEditorPage tryEditor = new TryEditorPage();
+        ChainTestListener.log("Executing code: " + code);
+        tryEditor.enteringCode(code);	        
+        tp.clickRunButton();	      
+        String consoleOutput = tp.getOutputText();
+		Assert.assertNotNull(consoleOutput, "Console output should not be null.");
+		LoggerLoad.info("Console output: " + consoleOutput);
+		Assert.assertNotNull(tp.getOutputText());	  
 		}
-	}
-		
-*/	
+	
 }
+		
+	
