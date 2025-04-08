@@ -56,13 +56,15 @@ public class TreeTest extends BaseClass {
 
 	// --------------------------- (1. Overview of
 	// Trees)------------------------------------------------------
-	// TC02
-	@Test(priority = 2)
-	public void testOverviewOfTreesPage() throws InterruptedException {
+	
+	@Test(priority=2)
+	public void testOverviewOfTrees() throws InterruptedException {
 		treePage.overviewofTreesLink();
 		LoggerLoad.info("Overview of Trees link Clicked");
 		Assert.assertEquals("Overview of Trees", dsintropage.validatePageTitle());
 		LoggerLoad.info("title is" + "Overview of Trees");
+		
+		
 	}
 
 	// TC03
