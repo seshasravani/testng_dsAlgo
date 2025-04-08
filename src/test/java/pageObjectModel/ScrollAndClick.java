@@ -17,7 +17,7 @@ public class ScrollAndClick {
         this.driver = driver;
     }
     
-    //Data Structures-Introduction Page - Time Complexity Topic
+    
     public void clickTimeComplexityLink() {
        
         JavascriptExecutor js = (JavascriptExecutor) driver;

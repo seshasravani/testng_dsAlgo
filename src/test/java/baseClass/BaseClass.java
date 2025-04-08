@@ -43,7 +43,7 @@ public class BaseClass {
             driver.manage().deleteAllCookies();
             driver.get(prop1.getProperty("url"));
 
-            // ✅ Start ExtentTest for each test method
+           
             ExtentTestManager.startTest(method.getName(), "Test method: " + method.getName());
 
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class BaseClass {
 
     @AfterMethod(alwaysRun = true)
     public void tearDownTest(ITestResult result) {
-        // ✅ Log result in Extent Report
+       
         if (result.getStatus() == ITestResult.SUCCESS) {
             ExtentTestManager.getTest().pass("Test Passed");
         } else if (result.getStatus() == ITestResult.FAILURE) {
@@ -77,6 +77,6 @@ public class BaseClass {
 
     @AfterSuite(alwaysRun = true)
     public void tearDownSuite() {
-        ExtentManager.getInstance().flush(); // ✅ Write everything to ExtentReport.html
+        ExtentManager.getInstance().flush(); 
     }
 }

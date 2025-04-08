@@ -5,23 +5,21 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+
 
 import driverManager.DriverManager;
-import utilities.ExcelReader;
+
 import utilities.LoggerLoad;
 
 import java.time.Duration;
-import java.util.List;
-import java.util.Map;
 
-import org.apache.poi.openxml4j.exceptions.OpenXML4JException;
-import java.io.IOException;
+
+
 
 public class TryEditorPage {
 
 	private WebDriver driver = DriverManager.getDriver();
-	private ExcelReader excelReader = new ExcelReader();
+
 
 	private final By codeEditorPage = By.xpath("//*[@id='answer_form']/div/div/div[6]/div[1]/div/div/div/div[5]/div/pre");
 	private final By runButton = By.xpath("//button[text()='Run']");
@@ -88,22 +86,5 @@ public class TryEditorPage {
 		textArea.sendKeys(code);
 	}
 
-//	public void enterTryHereCode(String sheetName, int row)
-//			throws InvalidFormatException, IOException, OpenXML4JException {
-//		LoggerLoad.info("Reading code from Excel sheet: " + sheetName + ", Row: " + row);
-//		List<Map<String, String>> testData = excelReader.readFromExcel("src/test/resources/Excel/TestDataforScenarios.xlsx",
-//				sheetName);
-//
-//		if (row < testData.size()) {
-//			String pCode = testData.get(row).get("pCode");
-//			if (pCode != null && !pCode.isEmpty()) {
-//				LoggerLoad.info("Fetched code from Excel: " + pCode);
-//				enteringCode(pCode);
-//			} else {
-//				LoggerLoad.error("No code found for row " + row);
-//			}
-//		} else {
-//			LoggerLoad.error("Row " + row + " is out of bounds.");
-//			throw new IllegalArgumentException("Row index out of bounds.");
-//		}
+
 	}

@@ -16,8 +16,7 @@ public class TreePom {
 	
 	By tree_getStarted = By.xpath("//a[@href='tree']");
 
-	// Tree Page general elements
-
+	
 	private By overviewofTrees = By.xpath("//a[@href='overview-of-trees']");
 	private By terminologies = By.linkText("Terminologies");
 	private By typesofTrees = By.xpath("//a[@href='types-of-trees']");
@@ -47,13 +46,12 @@ public class TreePom {
 		System.out.println("trying overview of trees");
 		
 
-		// Create WebDriverWait to wait for up to 10 seconds
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 	    
-	    // Wait until the "Overview of Trees" link is clickable
+	 
 	    WebElement element = wait.until(ExpectedConditions.elementToBeClickable(overviewofTrees));
 	    
-	    // Once clickable, click the element
+	   
 	    element.click();
 	    
 

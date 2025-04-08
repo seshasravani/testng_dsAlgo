@@ -6,7 +6,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.chaintest.plugins.ChainTestListener;
+
 
 import baseClass.BaseClass;
 import pageObjectModel.ArrayPom;
@@ -92,7 +92,6 @@ public class ArrayTest extends BaseClass {
 		LoggerLoad.info("Arrays in python link clicked");
 		tp.clickTryHereBtn();
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -103,11 +102,11 @@ public class ArrayTest extends BaseClass {
 //TC06 	
   @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 6)
 	public void testArraysInPythonTryHereValidCode(String code, String expectedResult) {
-	  ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+	 
 	  ap.clickarraysInPythonLink();
       tp.clickTryHereBtn();
       TryEditorPage tryEditor = new TryEditorPage();
-      ChainTestListener.log("Executing code: " + code);
+      
       tryEditor.enteringCode(code); 
       tp.clickRunButton();
         String consoleOutput = tp.getOutputText();
@@ -152,7 +151,7 @@ public class ArrayTest extends BaseClass {
 		LoggerLoad.info("Arrays Using List link clicked");
 		tp.clickTryHereBtn();
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	        
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -162,11 +161,11 @@ public class ArrayTest extends BaseClass {
 //TC11 
 	@Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority=11)
 	public void testArraysUsingListTryHereValidCode(String code, String expectedResult) {
-		ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+		
 		ap.clickarraysUsingListLink();
 		tp.clickTryHereBtn();
 	      TryEditorPage tryEditor = new TryEditorPage();
-	      ChainTestListener.log("Executing code: " + code);
+	      
 	      tryEditor.enteringCode(code);     
 	      tp.clickRunButton();
           
@@ -213,7 +212,7 @@ public class ArrayTest extends BaseClass {
 		LoggerLoad.info("Basic Operations In Lists Link Clicked");
 		tp.clickTryHereBtn();
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	        
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -225,11 +224,11 @@ public class ArrayTest extends BaseClass {
 	@Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority=16)
 	public void testBasicOperationsInListsTryHereValidCode(String code,String expectedResult) {
 		
-		  ChainTestListener.log("Verifying code execution for Basic Operations In Lists Page");
+		 
 		  ap.clickbasicOperationsInListsLink();
 	      tp.clickTryHereBtn();
 	      TryEditorPage tryEditor = new TryEditorPage();
-	      ChainTestListener.log("Executing code: " + code);
+	      
 	      tryEditor.enteringCode(code);
 	      tp.clickRunButton();
 	      
@@ -278,7 +277,7 @@ public class ArrayTest extends BaseClass {
 		LoggerLoad.info("Click Applications Of Array link clicked");
 		tp.clickTryHereBtn();
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	       
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -289,11 +288,11 @@ public class ArrayTest extends BaseClass {
 	@Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class,priority=21)
 	public void testApplicationsOfArrayTryHereValidCode(String code, String expectedResult) {
 		
-		  ChainTestListener.log("Verifying code execution for Applications Of Array Page");  
+		  
 		  ap.clickapplicationsOfArrayLink();
 	      tp.clickTryHereBtn();
 	      TryEditorPage tryEditor = new TryEditorPage();
-	      ChainTestListener.log("Executing code: " + code);
+	      
 	      tryEditor.enteringCode(code);
 	      tp.clickRunButton();
 	      String consoleOutput = tp.getOutputText();
@@ -342,7 +341,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickSearchTheArrayLink();
 		LoggerLoad.info("Search the array Link Clicked");
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	       
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -360,7 +359,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickSearchTheArrayLink();
 		LoggerLoad.info("Search the array Link Clicked");
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	        
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();	      
 	        String consoleOutput = tp.getOutputText();
@@ -379,7 +378,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickMaxConsecutiveOnes();
 		LoggerLoad.info("Max Consecutive Ones Link Clicked");
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	        
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -396,7 +395,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickMaxConsecutiveOnes();
 		LoggerLoad.info("Max Consecutive Ones Link Clicked");
 		TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+       
         tryEditor.enteringCode(code);	        
         tp.clickRunButton();	      
         String consoleOutput = tp.getOutputText();
@@ -415,7 +414,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickFindNumWithEvenNumOfDigits();
 		LoggerLoad.info("Find Numbers with Even Number of Digits Link Clicked");
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	       
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -432,7 +431,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickFindNumWithEvenNumOfDigits();
 		LoggerLoad.info("Find Numbers with Even Number of Digits Link Clicked");
 		TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+       
         tryEditor.enteringCode(code);	        
         tp.clickRunButton();	      
         String consoleOutput = tp.getOutputText();
@@ -452,7 +451,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickSquaresOfASortedArray();
 		LoggerLoad.info("Squares of a Sorted Array Link Clicked");
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	        
 	        tryEditor.enteringCode(code);	        
 	        tp.clickRunButton();
 	        Assert.assertEquals(true, tp.handleAlert());
@@ -470,7 +469,7 @@ public class ArrayTest extends BaseClass {
 		ap.clickSquaresOfASortedArray();
 		LoggerLoad.info("Squares of a Sorted Array Link Clicked");
 		TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+        
         tryEditor.enteringCode(code);	        
         tp.clickRunButton();	      
         String consoleOutput = tp.getOutputText();
