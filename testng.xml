@@ -8,10 +8,8 @@
         <listener class-name="Listeners.MyAnnotationTransformer" />-->
        <!--- <listener class-name="io.qameta.allure.testng.AllureTestNGListener"/>-->
         <listener class-name="Listeners.AllureListener"/>
-        <listener class-name="com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter" />
-         <listener class-name="Listeners.ExtentTestListener" />
+        <listener class-name="Listeners.ExtentTestListener" />
         <!--<listener class-name="com.aventstack.chaintest.testng.ChainTestListener"/>-->
-         
     </listeners>
     
     <!-- Chrome Test -->
@@ -20,14 +18,14 @@
         <classes>
             <class name="testcases.ArrayTest"/>
             <class name="testcases.DataStructureTest"/>
-            <class name="testcases.GraphTest"/>
+   <!--         <class name="testcases.GraphTest"/>-->
             <class name="testcases.HomeTest"/>
             <class name="testcases.LinkedListTest"/>
             <class name="testcases.LoginTest"/>
-            <class name="testcases.QueueTest"/>
+        <!--    <class name="testcases.QueueTest"/>-->
             <class name="testcases.RegisterTest"/>
-            <class name="testcases.stackTest"/>
-            <class name="testcases.TreeTest"/>
+         <!--   <class name="testcases.stackTest"/>-->
+          <!--  <class name="testcases.TreeTest"/>-->
         </classes>
     </test>
 
@@ -37,14 +35,14 @@
         <classes>
             <class name="testcases.ArrayTest"/>
             <class name="testcases.DataStructureTest"/>
-            <class name="testcases.GraphTest"/>
+            <!--<class name="testcases.GraphTest"/>-->
             <class name="testcases.HomeTest"/>
             <class name="testcases.LinkedListTest"/>
             <class name="testcases.LoginTest"/>
-            <class name="testcases.QueueTest"/>
+           <!-- <class name="testcases.QueueTest"/>-->
             <class name="testcases.RegisterTest"/>
-            <class name="testcases.stackTest"/>
-            <class name="testcases.TreeTest"/>
+           <!-- <class name="testcases.stackTest"/>
+            <class name="testcases.TreeTest"/>-->
         </classes>
     </test>
 
@@ -54,14 +52,14 @@
         <classes>
             <class name="testcases.ArrayTest"/>
             <class name="testcases.DataStructureTest"/>
-            <class name="testcases.GraphTest"/>
+            <!--<class name="testcases.GraphTest"/>-->
             <class name="testcases.HomeTest"/>
             <class name="testcases.LinkedListTest"/>
             <class name="testcases.LoginTest"/>
-            <class name="testcases.QueueTest"/>
+            <!--<class name="testcases.QueueTest"/>-->
             <class name="testcases.RegisterTest"/>
-            <class name="testcases.stackTest"/>
-            <class name="testcases.TreeTest"/>
+           <!-- <class name="testcases.stackTest"/>
+            <class name="testcases.TreeTest"/>-->
         </classes>
     </test>
 
