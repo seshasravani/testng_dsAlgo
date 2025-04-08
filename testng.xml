@@ -6,7 +6,6 @@
     <listeners>
        <!-- <listener class-name="Listeners.MyListeners" />
         <listener class-name="Listeners.MyAnnotationTransformer" />-->
-       <!--- <listener class-name="io.qameta.allure.testng.AllureTestNGListener"/>-->
         <listener class-name="Listeners.AllureListener"/>
         <listener class-name="Listeners.ExtentTestListener" />
         <!--<listener class-name="com.aventstack.chaintest.testng.ChainTestListener"/>-->
@@ -18,49 +17,49 @@
         <classes>
             <class name="testcases.ArrayTest"/>
             <class name="testcases.DataStructureTest"/>
-   <!--         <class name="testcases.GraphTest"/>-->
+            <class name="testcases.GraphTest"/>
             <class name="testcases.HomeTest"/>
             <class name="testcases.LinkedListTest"/>
             <class name="testcases.LoginTest"/>
-        <!--    <class name="testcases.QueueTest"/>-->
+            <class name="testcases.QueueTest"/>
             <class name="testcases.RegisterTest"/>
-         <!--   <class name="testcases.stackTest"/>-->
-          <!--  <class name="testcases.TreeTest"/>-->
+            <class name="testcases.stackTest"/>
+            <class name="testcases.TreeTest"/>
         </classes>
     </test>
 
-    <!-- Firefox Test -->
+   <!--  Firefox Test 
     <test name="firefoxTest">
         <parameter name="browser" value="firefox" />
         <classes>
             <class name="testcases.ArrayTest"/>
             <class name="testcases.DataStructureTest"/>
-            <!--<class name="testcases.GraphTest"/>-->
+            <class name="testcases.GraphTest"/>
             <class name="testcases.HomeTest"/>
             <class name="testcases.LinkedListTest"/>
             <class name="testcases.LoginTest"/>
-           <!-- <class name="testcases.QueueTest"/>-->
+            <class name="testcases.QueueTest"/>
             <class name="testcases.RegisterTest"/>
-           <!-- <class name="testcases.stackTest"/>
-            <class name="testcases.TreeTest"/>-->
+            <class name="testcases.stackTest"/>
+            <class name="testcases.TreeTest"/>
         </classes>
     </test>
 
-    <!-- Edge Test -->
+     Edge Test 
     <test name="edgeTest">
         <parameter name="browser" value="edge" />
         <classes>
             <class name="testcases.ArrayTest"/>
             <class name="testcases.DataStructureTest"/>
-            <!--<class name="testcases.GraphTest"/>-->
+            <class name="testcases.GraphTest"/>
             <class name="testcases.HomeTest"/>
             <class name="testcases.LinkedListTest"/>
             <class name="testcases.LoginTest"/>
-            <!--<class name="testcases.QueueTest"/>-->
+            <class name="testcases.QueueTest"/>
             <class name="testcases.RegisterTest"/>
-           <!-- <class name="testcases.stackTest"/>
-            <class name="testcases.TreeTest"/>-->
+            <class name="testcases.stackTest"/>
+            <class name="testcases.TreeTest"/>
         </classes>
     </test>
-
+-->
 </suite>

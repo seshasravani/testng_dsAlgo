@@ -5,11 +5,14 @@ import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 
+import com.aventstack.chaintest.plugins.ChainTestListener;
+
 import driverManager.DriverManager;
 import utilities.ConfigReader;
 import utilities.ExtentManager;
 import utilities.ExtentTestManager;
 
+@Listeners(ChainTestListener.class)
 public class BaseClass {
 
     public WebDriver driver;
