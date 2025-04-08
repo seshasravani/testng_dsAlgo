@@ -84,39 +84,39 @@ public class ExcelReader {
     //read invalid code (testNG) 
     
     public List<Map<String, String>> readFromExcel(String filePath, String sheetName) throws IOException {
-        // Open the file and create workbook
+       
         FileInputStream fis = new FileInputStream(new File(filePath));
         Workbook workbook = new XSSFWorkbook(fis);
       
-       // Get the specified sheet
+   
        Sheet sheet = workbook.getSheet(sheetName);
-               // Get the total number of rows (excluding the header row)
-       int totalRow = sheet.getLastRowNum();  // This gives the index of the last row
+          
+       int totalRow = sheet.getLastRowNum();  
       System.out.println("totalRow--->" + totalRow);
 
-     // List to hold the rows of data
+
         List<Map<String, String>> excelRows = new ArrayList<>();
 
-        // Iterate through each row (starting from the second row to skip the header)
+        
         for (int currentRow = 1; currentRow <= totalRow; currentRow++) {
             Row row = sheet.getRow(currentRow);
-            if (row == null) continue;  // Skip empty rows
+            if (row == null) continue; 
 
-          // Get the total number of columns in the row
+         
             int totalColumn = row.getLastCellNum();
 
-          // Create a map to hold the row data (key-value pairs of column header and cell value)
+          
           LinkedHashMap<String, String> columnMapdata = new LinkedHashMap<>();
 
-            // Iterate through each cell in the row
+            
             for (int currentColumn = 0; currentColumn < totalColumn; currentColumn++) {
-               // Get the current cell
+              
                 Cell cell = row.getCell(currentColumn);
 
-               // Get the column header from the first row (header row)
+            
                String columnHeaderName = sheet.getRow(0).getCell(currentColumn).getStringCellValue(); // First row as header
 
-                // Handle different cell types
+              
                String data = "";
                if (cell != null) {
                     switch (cell.getCellType()) {
@@ -124,30 +124,29 @@ public class ExcelReader {
                             data = cell.getStringCellValue();
                            break;
                       case NUMERIC:
-// Handle numeric cells
+
                          if (DateUtil.isCellDateFormatted(cell)) {
-                            data = cell.getDateCellValue().toString();  // Date formatted cells
+                            data = cell.getDateCellValue().toString();  
                           } else {
-                              data = String.valueOf(cell.getNumericCellValue());  // General numeric cells
+                              data = String.valueOf(cell.getNumericCellValue()); 
                             }
                             break;
                        case BLANK:
-                           data = "";  // Blank cells
+                           data = ""; 
                            break;
                         default:
-                            data = "";  // Default case for other cell types (like BOOLEAN, FORMULA, ERROR)
+                            data = ""; 
                     }
                }
 
-                // Add the data to the map
+           
                 columnMapdata.put(columnHeaderName, data);
             }
 
-           // Add the map (row data) to the list
+          
            excelRows.add(columnMapdata);
        }
 
-       // Close the file input stream and workbook
        workbook.close();
        fis.close();
        return excelRows;

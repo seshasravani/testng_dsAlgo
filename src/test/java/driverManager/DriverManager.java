@@ -4,11 +4,8 @@ import java.time.Duration;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
 
 public class DriverManager {
 
@@ -22,18 +19,12 @@ public class DriverManager {
 		try {
 			switch (browser.toLowerCase()) {
 			case "chrome":
-				// ChromeOptions chromeOptions = new ChromeOptions();
-				// chromeOptions.addArguments("headless");
 				tlDriver.set(new ChromeDriver());
 				break;
 			case "firefox":
-				// FirefoxOptions firefoxOptions = new FirefoxOptions();
-				// firefoxOptions.addArguments("headless");
 				tlDriver.set(new FirefoxDriver());
 				break;
 			case "edge":
-				// EdgeOptions edgeOptions = new EdgeOptions();
-				// edgeOptions.addArguments("headless");
 				tlDriver.set(new EdgeDriver());
 				break;
 			default:

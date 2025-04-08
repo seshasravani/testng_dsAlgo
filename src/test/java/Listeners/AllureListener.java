@@ -32,13 +32,13 @@ public class AllureListener implements ITestListener {
         saveTextLog("Test STARTED: " + result.getName());
     }
 
-    // Screenshot attachment
+
     @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshotPNG(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    // Text log attachment
+  
     @Attachment(value = "{0}", type = "text/plain")
     public static String saveTextLog(String message) {
         return message;

@@ -190,7 +190,6 @@ public class IntroductionPagePom {
 	}
 
 
-	//get title
 	public String getPageTitle() {
 		String elementText = driver.getTitle();
 		return elementText;
