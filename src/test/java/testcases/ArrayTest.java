@@ -31,7 +31,7 @@ public class ArrayTest extends BaseClass {
 	public LoginPom login;
 	
 	@BeforeMethod
-	public void loginToLinkedList() {
+	public void loginToArrayPage() {
 		
 		
 	        dsIntro=new DataStructureIntroPom();
