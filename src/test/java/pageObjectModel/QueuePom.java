@@ -12,12 +12,11 @@ public class QueuePom {
 	ExcelReader excelReader = new ExcelReader();
 	
 private By Queue_getStarted = By.xpath("//a[@href='queue']");
-private	By OperationsinQueue = By.linkText("Implementation of Queue in Python");
-private	By QueueRepresent = By.linkText("Implementation using collections.deque");
-private	By QueueArray = By.linkText("Implementation using array");
-private	By QueueOperations=  By.linkText("Queue Operations");
-private	By QueueRepresentations = By.xpath("//a[@href='Queue-representations']");
-private	By QueuePractice =  By.linkText("Practice Questions");
+public	By OperationsinQueue = By.linkText("Implementation of Queue in Python");
+public	By QueueRepresent = By.linkText("Implementation using collections.deque");
+public	By QueueArray = By.linkText("Implementation using array");
+public	By QueueOperations=  By.linkText("Queue Operations");
+public	By QueuePractice =  By.linkText("Practice Questions");
 private By clickTryhere = By.linkText("Try here>>>");
 public By queueTitle = By.xpath("//h4[text()='Queue']");
 
@@ -60,13 +59,6 @@ public void queueOperations() throws InterruptedException {
 
 }
 
-public void QueueRepresentations() throws InterruptedException {
-	
-	
-	
-	driver.findElement(QueueRepresentations).click();
-
-}
 public void QueuePractice() throws InterruptedException {
 	
 	
