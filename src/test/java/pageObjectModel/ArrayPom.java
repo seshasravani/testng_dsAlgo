@@ -25,64 +25,64 @@ public class ArrayPom {
 	
 		
 		public void clickarrayGetStartedBtn() {
-			//driver.findElement(arrayGetStartedButton).click();
+			
 		    CommonUtils.clickElement(arrayGetStartedButton);
 			LoggerLoad.info("Clicking the Array Get Started link");
 			
 		}
 		
 		public void clickarraysInPythonLink() {
-			//driver.findElement(arraysInPythonLink).click();
+			
 			CommonUtils.clickElement(arraysInPythonLink);
 			LoggerLoad.info("Clicking Arrays in Python link");
 			
 		}
 		
 		public void clickarraysUsingListLink() {
-			//driver.findElement(arraysUsingListLink).click();
+			
 		    CommonUtils.clickElement(arraysUsingListLink);
 			LoggerLoad.info("Clicking Arrays Using List link");
 			
 		}
 		
 		public void clickbasicOperationsInListsLink() {
-			//driver.findElement(basicOperationsInListsLink).click();
+			
 			CommonUtils.clickElement(basicOperationsInListsLink);
 			LoggerLoad.info("Clicking Basic Operations In Lists link");
 		}
 		public void clickapplicationsOfArrayLink() {
-			//driver.findElement(applicationsOfArrayLink).click();
+			
 			CommonUtils.clickElement(applicationsOfArrayLink);
 			LoggerLoad.info("Clicking Aplications Of Array link");
 			
 		}
 		
 		public void clickPracticeQuestionsLink() throws InterruptedException {
-			//driver.findElement(practiceQuestionsLink).click();
+			
 		    CommonUtils.clickElement(practiceQuestionsLink);
 			LoggerLoad.info("Practice Questions link clicked");
 		}
 		
 		public void clickSearchTheArrayLink() {
-		    //driver.findElement(searchTheArrayLink).click();
+		  
 			CommonUtils.clickElement(searchTheArrayLink);
 		    LoggerLoad.info("Clicking Search the Array link");
         }
 		    
 	    public void clickMaxConsecutiveOnes() {
-		    //driver.findElement(maxConsecutiveOnes).click();
+		   
 	        CommonUtils.clickElement(maxConsecutiveOnes);
 	        LoggerLoad.info("Clicking Max Consecutive Ones link");
 		}
 	    
 		public void clickFindNumWithEvenNumOfDigits() {
-		    //driver.findElement(findNumWithEvenNumOfDigits).click();
+		    
 			CommonUtils.clickElement(findNumWithEvenNumOfDigits);
 		    LoggerLoad.info("Clicking Find Numbers with Even Number of Digits link");
 		}
 		    
 		public void clickSquaresOfASortedArray() {
-		    //driver.findElement(squaresOfAsortedArray).click();
+		    
 		    CommonUtils.clickElement(squaresOfAsortedArray);
 		    LoggerLoad.info("Clicking Squares of a Sorted Array link");
 		}
@@ -90,10 +90,6 @@ public class ArrayPom {
 		public String getTextForElement(By locator) {
 	        return CommonUtils.getTextForElement(locator);
 	    }
-		    
-		/*
-		 * public String getTextForElement(By locator) { String elementText =
-		 * driver.findElement(locator).getText(); return elementText; }
-		 */
+		    		
 		
 }

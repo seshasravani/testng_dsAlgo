@@ -19,40 +19,37 @@ public class DataStructureIntroPom {
 	public By dsPageTitle = By.xpath("//h4[text()='Data Structures-Introduction']");
 
 	public void clickGetStartedBtn() {
-		//driver.findElement(dsGetStartedBtn).click();
+		
 		CommonUtils.clickElement(dsGetStartedBtn);
 		LoggerLoad.info("DS Get Started Button Clicked");
 
 	}
 
 	public void clickTimeComplexityLink() {
-		//driver.findElement(timeComplexityLink).click();
+		
 		CommonUtils.clickElement(timeComplexityLink);
 		LoggerLoad.info("Time Complexity link clicked");
 
 	}
 
 	public void clickPracticeQuestionsLink() {
-		//driver.findElement(practiceQuestionsLink).click();
+		
 		CommonUtils.clickElement(practiceQuestionsLink);
 		LoggerLoad.info("Practice Questions link clicked");
 	}
 
 	public Boolean validateElementDisplayed(By locator) {
-		//return driver.findElement(locator).isDisplayed();
+		
 		return CommonUtils.isElementDisplayed(locator);
 	}
 
 	public String validatePageTitle() {
-		//return driver.getTitle();
+		
 		return CommonUtils.getPageTitle();
 	}
 
 	public String getTextForElement(By locator) {
-		/*
-		 * String elementText = driver.findElement(locator).getText(); return
-		 * elementText;
-		 */
+		
 		return CommonUtils.getTextForElement(locator);
 	}
 	
@@ -60,9 +57,6 @@ public class DataStructureIntroPom {
 	    return CommonUtils.getElementCount(locator);
 	}	
 
-	/*
-	 * public Integer getElementSize(By locator) { Integer elementCount =
-	 * driver.findElements(locator).size(); return elementCount; }
-	 */
+
 
 }
