@@ -4,8 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.chaintest.plugins.ChainTestListener;
-
 import baseClass.BaseClass;
 import pageObjectModel.DataStructureIntroPom;
 import pageObjectModel.HomePom;
@@ -14,7 +12,6 @@ import pageObjectModel.LoginPom;
 import pageObjectModel.ScrollAndClick;
 import pageObjectModel.TryEditorDsPom;
 import pageObjectModel.TryEditorPage;
-import utilities.ExtentTestManager;
 import utilities.LoggerLoad;
 import utilities.TestDataProvider;
 
@@ -101,12 +98,11 @@ public class DataStructureTest extends BaseClass {
     @Test(dataProvider = "codeExecutionDataInvalid", dataProviderClass = TestDataProvider.class, priority = 5)
     public void testDSIntroTimeComplexityTryHereWithInvalidCode(String code, String expectedResult) {
     	
-        ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+      
         sc.clickTimeComplexityLink();
         tp.clickTryHereBtn();
 
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
         tryEditor.enteringCode(code);
         
         tp.clickRunButton();
@@ -118,12 +114,10 @@ public class DataStructureTest extends BaseClass {
     @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 6)
         public void testDSIntroTimeComplexityTryHereWithValidCode(String code, String expectedResult) {
     	 
-        ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
         sc.clickTimeComplexityLink();
         tp.clickTryHereBtn();
 
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
         tryEditor.enteringCode(code);
         
         tp.clickRunButton();

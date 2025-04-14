@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utilities.CommonUtils;
+
 public class ScrollAndClick {
 	
 	WebDriver driver;
@@ -19,20 +21,11 @@ public class ScrollAndClick {
     
     
     public void clickTimeComplexityLink() {
-       
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        WebElement timeComplexityLink = wait.until(ExpectedConditions.visibilityOfElementLocated(By.linkText("Time Complexity")));
-        
-        js.executeScript("arguments[0].scrollIntoView(true);", timeComplexityLink);
-        
-        timeComplexityLink.click();
+    	 CommonUtils.scrollIntoView(By.linkText("Time Complexity"));
+    	 CommonUtils.clickElementWithWait(By.linkText("Time Complexity"), Duration.ofSeconds(10));
           
 
     }
-    
-    
+
     
 }

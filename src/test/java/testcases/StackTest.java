@@ -13,7 +13,6 @@ import pageObjectModel.IntroductionPagePom;
 import pageObjectModel.LoginPom;
 import pageObjectModel.StackPom;
 import pageObjectModel.ScrollAndClick;
-import pageObjectModel.StackPom;
 import pageObjectModel.TryEditorDsPom;
 import pageObjectModel.TryEditorPage;
 import utilities.LoggerLoad;

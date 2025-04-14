@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.chaintest.plugins.ChainTestListener;
 
 import baseClass.BaseClass;
 import pageObjectModel.DataStructureIntroPom;
@@ -88,7 +87,7 @@ public class QueueTest extends BaseClass {
   		queue.operationsinQueue();
   			tp.clickTryHereBtn();
   			 TryEditorPage tryEditor = new TryEditorPage();
-  		//        ChainTestListener.log("Executing code: " + code);
+  		
   		        tryEditor.enteringCode(code);	        
   		        tp.clickRunButton();
   		        Assert.assertEquals(true, tp.handleAlert());
@@ -97,11 +96,11 @@ public class QueueTest extends BaseClass {
   //TC06 	
     @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 6)
   	public void operationsinQueueTryHereValidCode(String code, String expectedResult) throws InterruptedException {
-  	//  ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+  
   	queue.operationsinQueue();
         tp.clickTryHereBtn();
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+       
         tryEditor.enteringCode(code); 
         tp.clickRunButton();
           String consoleOutput = tp.getOutputText();
@@ -146,7 +145,7 @@ public class QueueTest extends BaseClass {
   		queue.queueRepresent();
   			tp.clickTryHereBtn();
   			 TryEditorPage tryEditor = new TryEditorPage();
-  		//        ChainTestListener.log("Executing code: " + code);
+  		
   		        tryEditor.enteringCode(code);	        
   		        tp.clickRunButton();
   		        Assert.assertEquals(true, tp.handleAlert());
@@ -155,11 +154,11 @@ public class QueueTest extends BaseClass {
   //TC06 	
     @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 11)
   	public void queueRepresentTryHereValidCode(String code, String expectedResult) throws InterruptedException {
-  	//  ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+  	
     	queue.queueRepresent();
         tp.clickTryHereBtn();
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+       
         tryEditor.enteringCode(code); 
         tp.clickRunButton();
           String consoleOutput = tp.getOutputText();
@@ -204,7 +203,7 @@ public class QueueTest extends BaseClass {
   		queue.queueArray();
   			tp.clickTryHereBtn();
   			 TryEditorPage tryEditor = new TryEditorPage();
-  		//        ChainTestListener.log("Executing code: " + code);
+  		
   		        tryEditor.enteringCode(code);	        
   		        tp.clickRunButton();
   		        Assert.assertEquals(true, tp.handleAlert());
@@ -213,11 +212,11 @@ public class QueueTest extends BaseClass {
   //TC06 	
     @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 16)
   	public void queueArrayTryHereValidCode(String code, String expectedResult) throws InterruptedException {
-  	//  ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+  	
     	queue.queueArray();
         tp.clickTryHereBtn();
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+       
         tryEditor.enteringCode(code); 
         tp.clickRunButton();
           String consoleOutput = tp.getOutputText();
@@ -263,7 +262,7 @@ public class QueueTest extends BaseClass {
   		queue.queueOperations();
   			tp.clickTryHereBtn();
   			 TryEditorPage tryEditor = new TryEditorPage();
-  		//        ChainTestListener.log("Executing code: " + code);
+  
   		        tryEditor.enteringCode(code);	        
   		        tp.clickRunButton();
   		        Assert.assertEquals(true, tp.handleAlert());
@@ -272,11 +271,11 @@ public class QueueTest extends BaseClass {
   //TC06 	
     @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 21)
   	public void queueOperationsTryHereValidCode(String code, String expectedResult) throws InterruptedException {
-  	//  ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+  	
     	queue.queueOperations();
         tp.clickTryHereBtn();
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+    
         tryEditor.enteringCode(code); 
         tp.clickRunButton();
           String consoleOutput = tp.getOutputText();

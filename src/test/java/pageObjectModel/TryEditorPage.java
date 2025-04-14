@@ -8,7 +8,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 import driverManager.DriverManager;
-
+import utilities.CommonUtils;
 import utilities.LoggerLoad;
 
 import java.time.Duration;
@@ -27,64 +27,92 @@ public class TryEditorPage {
 
 	private String actualResult;
 
-	public void enterCode(String code) throws InterruptedException {
-		Actions action = new Actions(driver);
-		WebElement codeEditor = driver.findElement(codeEditorPage);
+	/*
+	 * public void enterCode(String code) throws InterruptedException { Actions
+	 * action = new Actions(driver); WebElement codeEditor =
+	 * driver.findElement(codeEditorPage);
+	 * 
+	 * action.moveToElement(codeEditor).click()
+	 * .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
+	 * .sendKeys(Keys.BACK_SPACE) .perform();
+	 * 
+	 * action.sendKeys(code).perform(); }
+	 */
+	
+	 public void enterCode(String code) throws InterruptedException {
+	        LoggerLoad.info("Entering code into the editor.");
+	        try {
+	            WebElement codeEditor = driver.findElement(codeEditorPage);
+	            Actions action = new Actions(driver);
 
-		action.moveToElement(codeEditor).click()
-		      .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
-		      .sendKeys(Keys.BACK_SPACE)
-		      .perform();
+	            // Clear the editor before entering code
+	            action.moveToElement(codeEditor).click()
+	                  .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
+	                  .sendKeys(Keys.BACK_SPACE).perform();
+	            
+	            // Enter the code
+	            action.sendKeys(code).perform();
+	            LoggerLoad.info("Code entered successfully.");
+	        } catch (Exception e) {
+	            LoggerLoad.error("Failed to enter code: " + e.getMessage());
+	        }
+	    }
+	 
+	 public void clickRunButton() {
+	        LoggerLoad.info("Attempting to click the 'Run' button.");
+	        try {
+	            CommonUtils.clickElement(runButton);  // Using CommonUtils click method
+	            LoggerLoad.info("Clicked the 'Run' button.");
+	            isAlertPresent();  // Check if an alert appears after running the code
+	        } catch (Exception e) {
+	            LoggerLoad.error("Failed to click the 'Run' button: " + e.getMessage());
+	        }
+	    }
 
-		action.sendKeys(code).perform();
-	}
+	 public String isAlertPresent() {
+	        try {
+	            Alert alert = driver.switchTo().alert();
+	            String alertText = alert.getText();
+	            LoggerLoad.info("Alert text: " + alertText);
+	            alert.accept();
+	            return alertText;
+	        } catch (NoAlertPresentException e) {
+	            LoggerLoad.info("No alert present.");
+	            return null;
+	        }
+	    }
 
-	public void clickRunButton() {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		WebElement button = wait.until(ExpectedConditions.elementToBeClickable(runButton));
-		button.click();
-		isAlertPresent();
-	}
+	    public String output() {
+	        LoggerLoad.info("Attempting to retrieve output.");
+	        try {
+	            // Check if there is an alert
+	            Alert alert = driver.switchTo().alert();
+	            actualResult = alert.getText();
+	            LoggerLoad.info("Alert message of invalid code: " + actualResult);
+	            alert.accept();
+	        } catch (NoAlertPresentException e) {
+	            // If no alert, retrieve the output from the page
+	            WebElement outputElement = driver.findElement(tryEditorOutput);
+	            actualResult = outputElement.getText();
+	            LoggerLoad.info("Actual result of valid code: " + actualResult);
+	        }
+	        return actualResult;
+	    }
 
-	public String isAlertPresent() {
-		try {
-			Alert alert = driver.switchTo().alert();
-			String alertText = alert.getText();
-			System.out.println("Alert text: " + alertText);
-			alert.accept();
-			return alertText;
-		} catch (NoAlertPresentException e) {
-			LoggerLoad.info("No alert present.");
-			return null;
-		}
-	}
+	    public void enteringCode(String code) {
+	        LoggerLoad.info("Entering code using 'enteringCode' method.");
+	        try {
+	            WebElement codeMirror = driver.findElement(By.xpath("//div[contains(@class, 'CodeMirror') and contains(@class, 'cm-s-default')]"));
+	            Actions actions = new Actions(driver);
+	            actions.moveToElement(codeMirror).click().perform();
 
-	public String output() {
-		try {
-			Alert alert = driver.switchTo().alert();
-			actualResult = alert.getText();
-			System.out.println("Alert message of invalid code: " + actualResult);
-			alert.accept();
-		} catch (NoAlertPresentException e) {
-			WebElement outputElement = driver.findElement(tryEditorOutput);
-			actualResult = outputElement.getText();
-			System.out.println("Actual result of valid code: " + actualResult);
-		}
-		return actualResult;
-	}
-
-	public void enteringCode(String code) {
-		WebElement codeMirror = driver.findElement(
-			By.xpath("//div[contains(@class, 'CodeMirror') and contains(@class, 'cm-s-default')]"));
-
-		Actions actions = new Actions(driver);
-		actions.moveToElement(codeMirror).click().perform();
-
-		WebElement textArea = codeMirror.findElement(By.xpath(".//textarea"));
-		textArea.sendKeys(Keys.CONTROL + "a");
-		textArea.sendKeys(Keys.DELETE);
-		textArea.sendKeys(code);
-	}
-
-
+	            WebElement textArea = codeMirror.findElement(By.xpath(".//textarea"));
+	            textArea.sendKeys(Keys.CONTROL + "a");
+	            textArea.sendKeys(Keys.DELETE);
+	            textArea.sendKeys(code);
+	            LoggerLoad.info("Code entered successfully.");
+	        } catch (Exception e) {
+	            LoggerLoad.error("Failed to enter code in the editor: " + e.getMessage());
+	        }
+	    }
 	}

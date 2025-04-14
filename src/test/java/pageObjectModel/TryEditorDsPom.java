@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 
 import driverManager.DriverManager;
+import utilities.CommonUtils;
 import utilities.ExcelReader;
 import utilities.LoggerLoad;
 
@@ -30,105 +31,151 @@ public class TryEditorDsPom {
 	public By textAreaForCode = By.xpath("//textarea[@tabindex='0']");
 	public By runButton = By.xpath("//button[text()='Run']");
 	public By consoleOutputMsg = By.xpath("//pre[@id='output']");
-	public void clickTryHereBtn() {
-		
-		Actions act = new Actions(driver);
-		act.moveToElement(driver.findElement(tryHereButton)).click().perform();
-		LoggerLoad.info("Clicked the Try Here button.");
-	}
-
-	public void enterTryHereCode(String pCode) {
-	    LoggerLoad.info("Entering Code: " + pCode);
-
-	   WebElement codeMirror = driver
-				.findElement(textAreaForCode);
-
-		Actions actions = new Actions(driver);
-		actions.moveToElement(codeMirror).click().perform();
-
-		WebElement textArea = codeMirror.findElement(By.xpath("//textarea[@tabindex='0']"));
-		textArea.sendKeys(pCode);
-	}
+	/*
+	 * public void clickTryHereBtn() {
+	 * 
+	 * Actions act = new Actions(driver);
+	 * act.moveToElement(driver.findElement(tryHereButton)).click().perform();
+	 * LoggerLoad.info("Clicked the Try Here button."); }
+	 */
 	
-	public void enterTryHereCode(String sheetName, int row)
-			throws InvalidFormatException, IOException, OpenXML4JException {
-		LoggerLoad.info("Reading code from Excel sheet: " + sheetName + ", Row: " + row);
-		List<Map<String, String>> testData = excelReader.readFromExcel("src/test/resources/Excel/TestData.xlsx",
-				sheetName);
+	  public void clickTryHereBtn() {
+	        LoggerLoad.info("Attempting to click the 'Try Here' button.");
+	        try {
+	            CommonUtils.clickElement(tryHereButton);  // Using CommonUtils click method
+	            LoggerLoad.info("Clicked the 'Try Here' button.");
+	        } catch (Exception e) {
+	            LoggerLoad.error("Failed to click the 'Try Here' button: " + e.getMessage());
+	        }
+	    }
 
-		System.out.println("testData--->" + testData.size()+"-->"+testData);
-		String pCode = "";
-		if (row <= testData.size()) {
-			System.out.println("Inside if loop---->");
-			System.out.println("row--->" + row);
-			pCode = testData.get(row).get("pCode");
-			System.out.println("pCode-->" + pCode);
-		} else {
-			LoggerLoad.error("Specified row " + row + " is out of bounds for the Excel sheet.");
-			throw new IllegalArgumentException("Row index out of bounds.");
-		}
-		if (pCode != null && !pCode.isEmpty()) {
-			LoggerLoad.info("Fetched code from Excel: " + pCode);
-			enterTryHereCode(pCode);
-		} else {
-			LoggerLoad.error("No code found for the specified row in the Excel sheet.");
-		}
-	}
+	/*
+	 * public void enterTryHereCode(String pCode) {
+	 * LoggerLoad.info("Entering Code: " + pCode);
+	 * 
+	 * WebElement codeMirror = driver .findElement(textAreaForCode);
+	 * 
+	 * Actions actions = new Actions(driver);
+	 * actions.moveToElement(codeMirror).click().perform();
+	 * 
+	 * WebElement textArea =
+	 * codeMirror.findElement(By.xpath("//textarea[@tabindex='0']"));
+	 * textArea.sendKeys(pCode); }
+	 */
+	    public void enterTryHereCode(String pCode) {
+	        LoggerLoad.info("Entering code: " + pCode);
+	        try {
+	            WebElement codeMirror = driver.findElement(textAreaForCode);
+	            Actions actions = new Actions(driver);
+	            actions.moveToElement(codeMirror).click().perform();
+	            WebElement textArea = codeMirror.findElement(By.xpath("//textarea[@tabindex='0']"));
+	            textArea.sendKeys(pCode);
+	            LoggerLoad.info("Code entered successfully.");
+	        } catch (Exception e) {
+	            LoggerLoad.error("Failed to enter code: " + e.getMessage());
+	        }
+	    }
+	    public void enterTryHereCode(String sheetName, int row) throws InvalidFormatException, IOException, OpenXML4JException {
+	        LoggerLoad.info("Reading code from Excel sheet: " + sheetName + ", Row: " + row);
+	        try {
+	            List<Map<String, String>> testData = excelReader.readFromExcel("src/test/resources/Excel/TestData.xlsx", sheetName);
 
-	public void clickRunButton() {
-		driver.findElement(runButton).click();
-		LoggerLoad.info("Clicked the Run button.");
-	}
+	            if (row <= testData.size()) {
+	                String pCode = testData.get(row).get("pCode");
+	                if (pCode != null && !pCode.isEmpty()) {
+	                    LoggerLoad.info("Fetched code from Excel: " + pCode);
+	                    enterTryHereCode(pCode);
+	                } else {
+	                    LoggerLoad.error("No code found for the specified row in the Excel sheet.");
+	                }
+	            } else {
+	                LoggerLoad.error("Specified row " + row + " is out of bounds for the Excel sheet.");
+	                throw new IllegalArgumentException("Row index out of bounds.");
+	            }
+	        } catch (Exception e) {
+	            LoggerLoad.error("Error while reading or entering code from Excel: " + e.getMessage());
+	        }
+	    }
+	
 
-	public boolean isAlertPresent() {
-		try {
-			System.out.println("Inside isAlertPresent driver--->" + driver);
-			Alert alert = driver.switchTo().alert();
-			String alertMessage = alert.getText();
-			LoggerLoad.info("Alert message----> " + alertMessage);
-			LoggerLoad.info("Alert is present.");
-			alert.accept();
-			if (alertMessage != null && !alertMessage.isEmpty())  {
-				return true;
-			}else {
-				return false;
-			}
-		} catch (NoAlertPresentException e) {
-			LoggerLoad.info("No alert is present.");
-			return false;
-		}
-	}
+		/*
+		 * public void clickRunButton() { driver.findElement(runButton).click();
+		 * LoggerLoad.info("Clicked the Run button."); }
+		 */
+	    
 
-	public boolean handleAlert() {
-		
-		LoggerLoad.info("driver.switchTo().alert()--->"+driver);
-		Alert alert = driver.switchTo().alert();
-		String alertMessage = alert.getText();
-		LoggerLoad.info("Alert message: " + alertMessage);
-		alert.accept();
-		if (alertMessage != null && !alertMessage.isEmpty())  {
-		System.out.println("Inside if --->");
-		return true;
-	}else {
-		LoggerLoad.info("Inside else --->");
-		return false;
-	}
+	    public void clickRunButton() {
+	        LoggerLoad.info("Attempting to click the 'Run' button.");
+	        try {
+	            CommonUtils.clickElement(runButton);  // Using CommonUtils click method
+	            LoggerLoad.info("Clicked the 'Run' button.");
+	        } catch (Exception e) {
+	            LoggerLoad.error("Failed to click the 'Run' button: " + e.getMessage());
+	        }
+	    }
 
-	}
+		/*
+		 * public boolean isAlertPresent() { try {
+		 * System.out.println("Inside isAlertPresent driver--->" + driver); Alert alert
+		 * = driver.switchTo().alert(); String alertMessage = alert.getText();
+		 * LoggerLoad.info("Alert message----> " + alertMessage);
+		 * LoggerLoad.info("Alert is present."); alert.accept(); if (alertMessage !=
+		 * null && !alertMessage.isEmpty()) { return true; }else { return false; } }
+		 * catch (NoAlertPresentException e) { LoggerLoad.info("No alert is present.");
+		 * return false; } }
+		 */
+	    
+	    public boolean isAlertPresent() {
+	        try {
+	            Alert alert = driver.switchTo().alert();
+	            String alertMessage = alert.getText();
+	            LoggerLoad.info("Alert message: " + alertMessage);
+	            alert.accept();
+	            return alertMessage != null && !alertMessage.isEmpty();
+	        } catch (NoAlertPresentException e) {
+	            LoggerLoad.info("No alert is present.");
+	            return false;
+	        }
+	    }
+
+		/*
+		 * public boolean handleAlert() {
+		 * 
+		 * LoggerLoad.info("driver.switchTo().alert()--->"+driver); Alert alert =
+		 * driver.switchTo().alert(); String alertMessage = alert.getText();
+		 * LoggerLoad.info("Alert message: " + alertMessage); alert.accept(); if
+		 * (alertMessage != null && !alertMessage.isEmpty()) {
+		 * System.out.println("Inside if --->"); return true; }else {
+		 * LoggerLoad.info("Inside else --->"); return false; }
+		 * 
+		 * }
+		 */
+	    
+	    public boolean handleAlert() {
+	        LoggerLoad.info("Attempting to handle alert.");
+	        try {
+	            Alert alert = driver.switchTo().alert();
+	            String alertMessage = alert.getText();
+	            LoggerLoad.info("Alert message: " + alertMessage);
+	            alert.accept();
+	            return alertMessage != null && !alertMessage.isEmpty();
+	        } catch (NoAlertPresentException e) {
+	            LoggerLoad.info("No alert is present.");
+	            return false;
+	        }
+	    }
   
-        public String getOutputText() {
-        try {
-            
-        	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-            WebElement consoleOutputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(consoleOutputMsg));
-            
-             String consoleOutput = consoleOutputElement.getText();
-            
-            LoggerLoad.info("Console output text retrieved: " + consoleOutput);
-            return consoleOutput;
-        } catch (Exception e) {
-            LoggerLoad.error("Error retrieving console output: " + e.getMessage());
-            return ""; 
-        }
-    }
-}
+	    public String getOutputText() {
+	        LoggerLoad.info("Attempting to retrieve console output.");
+	        try {
+	            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+	            WebElement consoleOutputElement = wait.until(ExpectedConditions.visibilityOfElementLocated(consoleOutputMsg));
+	            String consoleOutput = consoleOutputElement.getText();
+	            LoggerLoad.info("Console output retrieved: " + consoleOutput);
+	            return consoleOutput;
+	        } catch (Exception e) {
+	            LoggerLoad.error("Error retrieving console output: " + e.getMessage());
+	            return "";
+	        }
+	    }
+	}
