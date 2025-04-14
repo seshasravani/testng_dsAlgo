@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.chaintest.plugins.ChainTestListener;
+
 
 import baseClass.BaseClass;
 import io.netty.handler.timeout.TimeoutException;
@@ -46,7 +46,7 @@ public class LoginTest extends BaseClass {
 
         loginPage.clickloginBtn();
 
-        String actualResult = loginPage.getLoginValidationMessage1();  // Or credentialsResult()
+        String actualResult = LoginPom.getLoginValidationMessage1();  // Or credentialsResult()
         Assert.assertEquals(actualResult.trim(), expectedResult.trim(), "Validation message mismatch!");
     }
 

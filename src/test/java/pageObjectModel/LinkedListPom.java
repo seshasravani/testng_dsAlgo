@@ -15,11 +15,8 @@ import utilities.LoggerLoad;
 
 public class LinkedListPom {
 	
-
-	WebDriver driver = DriverManager.getDriver();
 	ExcelReader excelReader = new ExcelReader();
-	
-	
+		
 	public By lsGetStartedBtn = By.cssSelector("a[href='linked-list']");
 	public By lsIntroductionLink = By.xpath("//a[@href='introduction']");
 	public By lsCreatingLinkedLIst = By.xpath("//a[@href='creating-linked-list']");

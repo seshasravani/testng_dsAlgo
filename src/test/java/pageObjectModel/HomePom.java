@@ -9,8 +9,6 @@ import utilities.LoggerLoad;
 
 public class HomePom {
 
-	public WebDriver driver = DriverManager.getDriver();
-
 	// Locators
 	public By getStartedButton = By.cssSelector("button.btn");
 	public By contentHeader = By.cssSelector(".content h1");
@@ -18,7 +16,7 @@ public class HomePom {
 	public By signOutLink = By.xpath("//a[@href='/logout']");
 
 	// Click Actions
-	public void clickHomePageGetStartedButton() {
+	public void ClickHomePageGetStartedButton() {
 		LoggerLoad.info("Clicking Home Page Get Started button");
 		CommonUtils.clickElement(getStartedButton);
 	}

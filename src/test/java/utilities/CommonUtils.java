@@ -1,6 +1,8 @@
 package utilities;
 
 import java.time.Duration;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -108,6 +110,51 @@ public class CommonUtils {
 		    element.sendKeys(text);
 		}
 	    
+	   public static String getValidationMessage(By primary, By fallback) {
+		    WebDriver driver = DriverManager.getDriver();
+		    try {
+		        WebElement element = driver.findElement(primary);
+		        if (element.isDisplayed()) {
+		            return element.getText().trim();
+		        }
+		    } catch (Exception e) {
+		        LoggerLoad.warn("Primary message not found: " + e.getMessage());
+		    }
+
+		    try {
+		        WebElement element = driver.findElement(fallback);
+		        if (element.isDisplayed()) {
+		            return element.getText().trim();
+		        }
+		    } catch (Exception e) {
+		        LoggerLoad.warn("Fallback message not found: " + e.getMessage());
+		    }
+
+		    return "No validation message available";
+		}
+	   
+	   public static String validatePageTitle() {
+		    WebDriver driver = DriverManager.getDriver();
+		    return driver.getTitle();
+		}
+
+	   public static boolean validateElementDisplayed(By locator) {
+		    try {
+		        WebElement element = DriverManager.getDriver().findElement(locator);
+		        return element.isDisplayed();
+		    } catch (NoSuchElementException e) {
+		        return false;  // Element is not found, return false
+		    }
+		}
+
+	 	   
+	   public static Integer getElementSize(By locator) {
+		    WebDriver driver = DriverManager.getDriver();
+		    int count = driver.findElements(locator).size();
+		    LoggerLoad.info("Found " + count + " elements for locator: " + locator.toString());
+		    return count;
+		}
+	}
 	   
 		/*
 		 * public static int getElementCount(By locator) { WebDriver driver =
@@ -116,6 +163,6 @@ public class CommonUtils {
 		 * locator.toString()); return count; }
 		 */
 	   
-	}
+	
 
-
+	

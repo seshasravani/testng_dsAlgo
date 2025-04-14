@@ -17,7 +17,6 @@ import utilities.LoggerLoad;
 
 public class LoginPom {
 
-	WebDriver driver = DriverManager.getDriver();
 	ExcelReader excelReader = new ExcelReader();
 	//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
@@ -26,7 +25,8 @@ public class LoginPom {
 	public By usernameTextBox = By.id("id_username");
 	public By passwordTextBox = By.id("id_password");
 	public By loginBtn = By.xpath("//input[@value='Login']");
-	public By loggedinmessage = By.xpath("//div[contains(text(),'You are logged in')]");
+	public static By loggedinmessage = By.xpath("//div[contains(text(),'You are logged in')]");
+    private static By alertMessage = By.cssSelector(".alert.alert-primary");
 
 	public void enterUsernameTxt(String username) {
 		//driver.findElement(usernameTextBox).sendKeys(username);
@@ -70,9 +70,10 @@ public class LoginPom {
 
 	}
 
-	public void passwordTextField(String password) {
-		driver.findElement(passwordTextBox).sendKeys(password);
-	}
+	/*
+	 * public void passwordTextField(String password) {
+	 * driver.findElement(passwordTextBox).sendKeys(password); }
+	 */
 
 	public String loggedinmessage() {
 		//return ((WebElement) loggedinmessage).getText();
@@ -87,27 +88,38 @@ public class LoginPom {
 	 * }
 	 */
 	
-	 public String getLoginValidationMessage1() {
-	        try {
-	            WebElement successMsg = driver.findElement(loggedinmessage);
-	            if (successMsg.isDisplayed()) {
-	                return successMsg.getText().trim();
-	            }
-	        } catch (Exception e) {
-	            LoggerLoad.warn("Error finding logged-in message: " + e.getMessage());
-	        }
-
-	        try {
-	            WebElement alert = driver.findElement(By.cssSelector(".alert.alert-primary"));
-	            if (alert.isDisplayed()) {
-	                return alert.getText().trim();
-	            }
-	        } catch (Exception e) {
-	            LoggerLoad.warn("Error finding alert message: " + e.getMessage());
-	        }
-
-	        return "No validation message available";
+	/*
+	 * public String getLoginValidationMessage() { private By loggedinmessage =
+	 * By.id("loggedinmessage"); // Replace with actual locator private By
+	 * alertMessage = By.cssSelector(".alert.alert-primary"); return
+	 * CommonUtils.getValidationMessage(loggedinmessage, alertMessage ); }
+	 */
+	 
+	public static String getLoginValidationMessage1() {
+	    try {
+	        // Attempt to get the validation message from CommonUtils
+	        return CommonUtils.getValidationMessage(loggedinmessage, alertMessage);
+	    } catch (Exception e) {
+	        e.printStackTrace();  // Log the exception for debugging
+	        return "Error retrieving message";  // Return a default error message
 	    }
+	}
+
+	
+	
+	/*
+	 * public String getLoginValidationMessage1() { try { WebElement successMsg =
+	 * driver.findElement(loggedinmessage); if (successMsg.isDisplayed()) { return
+	 * successMsg.getText().trim(); } } catch (Exception e) {
+	 * LoggerLoad.warn("Error finding logged-in message: " + e.getMessage()); }
+	 * 
+	 * try { WebElement alert =
+	 * driver.findElement(By.cssSelector(".alert.alert-primary")); if
+	 * (alert.isDisplayed()) { return alert.getText().trim(); } } catch (Exception
+	 * e) { LoggerLoad.warn("Error finding alert message: " + e.getMessage()); }
+	 * 
+	 * return "No validation message available"; }
+	 */
 
 
 	/*public String credentialsResult(String username, String password) {
@@ -127,22 +139,24 @@ public class LoginPom {
 			return "No validation message available";
 		}*/
 	 
-	 public String credentialsResult(String username, String password) {
-	        try {
-	            if (username == null || username.trim().isEmpty()) {
-	                WebElement usernameField = driver.findElement(usernameTextBox);
-	                return usernameField.getAttribute("validationMessage");
-	            } else if (password == null || password.trim().isEmpty()) {
-	                WebElement passwordField = driver.findElement(passwordTextBox);
-	                return passwordField.getAttribute("validationMessage");
-	            }
-
-	            WebElement alertMessage = driver.findElement(By.cssSelector(".alert.alert-primary"));
-	            return alertMessage.getText().trim();
-	        } catch (Exception e) {
-	            LoggerLoad.warn("Could not retrieve validation message: " + e.getMessage());
-	            return "No validation message available";
+	public String credentialsResult(String username, String password) {
+	    try {
+	        if (username == null || username.trim().isEmpty()) {
+	            // Use CommonUtils to get the validation message for the username field
+	            return CommonUtils.getValidationMessage(usernameTextBox, usernameTextBox);
+	        } else if (password == null || password.trim().isEmpty()) {
+	            // Use CommonUtils to get the validation message for the password field
+	            return CommonUtils.getValidationMessage(passwordTextBox, passwordTextBox);
 	        }
+
+	        // Use CommonUtils to get the text of the alert message
+	        return CommonUtils.getTextForElement(By.cssSelector(".alert.alert-primary")).trim();
+	    } catch (Exception e) {
+	        LoggerLoad.warn("Could not retrieve validation message: " + e.getMessage());
+	        return "No validation message available";
+	    }
 	}
+
+
 
 }

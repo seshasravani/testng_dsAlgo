@@ -1,8 +1,6 @@
 package pageObjectModel;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import driverManager.DriverManager;
 import utilities.CommonUtils;
 import utilities.ExcelReader;
 import utilities.LoggerLoad;
@@ -10,8 +8,6 @@ import utilities.LoggerLoad;
 
 public class ArrayPom {
 
-	WebDriver driver = DriverManager.getDriver();
-   
 	ExcelReader excelReader = new ExcelReader();
 	
 	public By arrayGetStartedButton = By.xpath("//div[h5[text()='Array']]//a[text()='Get Started']");

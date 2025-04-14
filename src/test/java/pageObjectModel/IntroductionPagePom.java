@@ -1,18 +1,25 @@
 package pageObjectModel;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import driverManager.DriverManager;
 import utilities.CommonUtils;
 import utilities.LoggerLoad;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.NoSuchElementException;
 
 public class IntroductionPagePom {
-
-    public WebDriver driver = DriverManager.getDriver();
 
     // Locators
     public By numpyNinja = By.cssSelector("a[href='/home']");
     public By dataStructure = By.cssSelector("a.dropdown-toggle");
+	public By dsDropdown = By.cssSelector("a.dropdown-item");
 
     public By dropDownLinkedListItem = By.cssSelector("a.dropdown-item[href='/linked-list']");
     public By dropDownArrayItem = By.cssSelector("a.dropdown-item[href='/array']");
@@ -120,7 +127,7 @@ public class IntroductionPagePom {
         LoggerLoad.info("Clicked Register link");
     }
 
-    public void clickOnSignInLink() {
+    public void clickOnSignInlink() {
         CommonUtils.clickElement(signInLink);
         LoggerLoad.info("Clicked Sign In link");
     }
@@ -152,6 +159,21 @@ public class IntroductionPagePom {
 
     public String getPageTitle() {
         return CommonUtils.getPageTitle();
+    }
+    
+    public int getElementSize(By locator) {
+        return CommonUtils.getElementSize(locator);
+    }
+  
+    public Boolean validateElementDisplayed(By locator) {
+        try {
+            WebDriver driver = DriverManager.getDriver(); // Get the WebDriver instance from DriverManager
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Wait for 10 seconds
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            return element.isDisplayed();
+        } catch (TimeoutException | NoSuchElementException e) {
+            return false;  // Handle the exception and return false if element is not found or not visible
+        }
     }
 }
 

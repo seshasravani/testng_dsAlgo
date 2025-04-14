@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.chaintest.plugins.ChainTestListener;
+
 
 import baseClass.BaseClass;
 import pageObjectModel.DataStructureIntroPom;
@@ -98,7 +98,7 @@ public class LinkedListTest extends BaseClass {
 	
 	 @Test(dataProvider = "codeExecutionDataInvalid", dataProviderClass = TestDataProvider.class, priority = 5)
 	    public void testLLIntroTryBtnInvalidCode(String code, String expectedResult) {
-	        ChainTestListener.log("Verifying code execution for Linked List Page");
+	   
 	        ip.clickDropdownToggle();
 			LoggerLoad.info("Dropdown Toggle clicked");
 			ip.clickDropdownItemLinkedList();
@@ -109,7 +109,7 @@ public class LinkedListTest extends BaseClass {
 			LoggerLoad.info("TryHere Button clicked");
 			       
 	        TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+
 	        tryEditor.enteringCode(code);
 	        
 	        tp.clickRunButton();
@@ -120,7 +120,7 @@ public class LinkedListTest extends BaseClass {
 	    
 	    @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 6)
 	    public void testLLIntroTryBtnValidCode(String code, String expectedResult) {
-	    	 ChainTestListener.log("Verifying code execution for Linked List Page");
+	    	
 		        ip.clickDropdownToggle();
 				LoggerLoad.info("Dropdown Toggle clicked");
 				ip.clickDropdownItemLinkedList();
@@ -131,7 +131,7 @@ public class LinkedListTest extends BaseClass {
 				LoggerLoad.info("TryHere Button clicked");
 				       
 		        TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		       
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();
@@ -188,7 +188,7 @@ public void testCreateLLLinkTryBtnInvalidCode(String code, String expectedResult
 	LoggerLoad.info("TryHere Button clicked");
 
     TryEditorPage tryEditor = new TryEditorPage();
-    ChainTestListener.log("Executing code: " + code);
+  
     tryEditor.enteringCode(code);
     
     tp.clickRunButton();
@@ -199,14 +199,14 @@ public void testCreateLLLinkTryBtnInvalidCode(String code, String expectedResult
 
 @Test(dataProvider = "codeExecutionDataValid", dataProviderClass = TestDataProvider.class, priority = 10)
 public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) {
-    ChainTestListener.log("Verifying code execution for Data Structure Introduction Page");
+    
     ls.clicklsCreatingLinkedLIstLink();
 	LoggerLoad.info("Creating Linked List Link Clicked");
 	tp.clickTryHereBtn();
 	LoggerLoad.info("TryHere Button clicked");
 
     TryEditorPage tryEditor = new TryEditorPage();
-    ChainTestListener.log("Executing code: " + code);
+
     tryEditor.enteringCode(code);
     
     tp.clickRunButton();
@@ -275,7 +275,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 		tp.clickTryHereBtn();
 		
 		TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+      
         tryEditor.enteringCode(code);
         
         tp.clickRunButton();
@@ -295,7 +295,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			tp.clickTryHereBtn();
 			
 			TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	      
 	        tryEditor.enteringCode(code);
 	        
 	        tp.clickRunButton();
@@ -368,7 +368,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 		LoggerLoad.info("TryHere Button clicked");
 		
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	       
 	        tryEditor.enteringCode(code);
 	        
 	    tp.clickRunButton();
@@ -390,7 +390,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 		LoggerLoad.info("TryHere Button clicked");
 		
 		 TryEditorPage tryEditor = new TryEditorPage();
-	        ChainTestListener.log("Executing code: " + code);
+	      
 	        tryEditor.enteringCode(code);
 	        
 	    tp.clickRunButton();
@@ -461,7 +461,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			LoggerLoad.info("TryHere Button clicked");
 			
 			  TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		       
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();
@@ -482,7 +482,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			LoggerLoad.info("TryHere Button clicked");
 			
 			  TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		        
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();
@@ -551,7 +551,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			LoggerLoad.info("TryHere Button clicked");
 			
 			  TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		    
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();
@@ -572,7 +572,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			LoggerLoad.info("TryHere Button clicked");
 			
 			  TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		      
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();
@@ -642,7 +642,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			LoggerLoad.info("TryHere Button clicked");
 			
 			  TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		      
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();
@@ -663,7 +663,7 @@ public void testCreateLLLinkTryBtnValidCode(String code, String expectedResult) 
 			LoggerLoad.info("TryHere Button clicked");
 			
 			  TryEditorPage tryEditor = new TryEditorPage();
-		        ChainTestListener.log("Executing code: " + code);
+		      
 		        tryEditor.enteringCode(code);
 		        
 		        tp.clickRunButton();

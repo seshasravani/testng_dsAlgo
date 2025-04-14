@@ -4,7 +4,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.aventstack.chaintest.plugins.ChainTestListener;
+
+
 
 import baseClass.BaseClass;
 import pageObjectModel.DataStructureIntroPom;
@@ -88,7 +89,8 @@ public class GraphTest extends BaseClass {
   		graph.topicsCoveredGraph();
   			tp.clickTryHereBtn();
   			 TryEditorPage tryEditor = new TryEditorPage();
-  		//        ChainTestListener.log("Executing code: " + code);
+
+
   		        tryEditor.enteringCode(code);	        
   		        tp.clickRunButton();
   		        Assert.assertEquals(true, tp.handleAlert());
@@ -101,7 +103,7 @@ public class GraphTest extends BaseClass {
   	graph.topicsCoveredGraph();
         tp.clickTryHereBtn();
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+    
         tryEditor.enteringCode(code); 
         tp.clickRunButton();
           String consoleOutput = tp.getOutputText();
@@ -159,7 +161,7 @@ public class GraphTest extends BaseClass {
     	graph.graphRepresentations();
         tp.clickTryHereBtn();
         TryEditorPage tryEditor = new TryEditorPage();
-        ChainTestListener.log("Executing code: " + code);
+      
         tryEditor.enteringCode(code); 
         tp.clickRunButton();
           String consoleOutput = tp.getOutputText();

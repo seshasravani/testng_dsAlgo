@@ -9,8 +9,6 @@ import utilities.LoggerLoad;
 
 public class GraphPom {
 
-	public WebDriver driver = DriverManager.getDriver();
-	
 	public By graphTitle = By.xpath("//h4[text()='Graph']");
 	private By graph_getStarted = By.xpath("//a[@href='graph']");
 	public By graph_topicsCovered = By.linkText("Graph");

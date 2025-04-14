@@ -29,14 +29,14 @@ public class HomeTest extends BaseClass {
 	public void testDSDropdownOptions() {
 		ip.clickDropdownToggle();
 	    LoggerLoad.info("Drop Down toggle clicked");
-		Assert.assertEquals(ip.getElementCnt(ip.dsDropdown), 6);
-		Assert.assertEquals(ip.getTextForArrayElements(ip.dsDropdown, 0), "Arrays");
-		Assert.assertEquals(ip.getTextForArrayElements(ip.dsDropdown, 1), "Linked List");
-		Assert.assertEquals(ip.getTextForArrayElements(ip.dsDropdown, 2), "Stack");
-		Assert.assertEquals(ip.getTextForArrayElements(ip.dsDropdown, 3), "Queue");
-		Assert.assertEquals(ip.getTextForArrayElements(ip.dsDropdown, 4), "Tree");
-		Assert.assertEquals(ip.getTextForArrayElements(ip.dsDropdown, 5), "Graph");
-		
+		Assert.assertEquals(ip.getElementCount(ip.dsDropdown), 6);
+		Assert.assertEquals(ip.getTextForElementAtIndex(ip.dsDropdown, 0), "Arrays");
+		Assert.assertEquals(ip.getTextForElementAtIndex(ip.dsDropdown, 1), "Linked List");
+		Assert.assertEquals(ip.getTextForElementAtIndex(ip.dsDropdown, 2), "Stack");
+		Assert.assertEquals(ip.getTextForElementAtIndex(ip.dsDropdown, 3), "Queue");
+		Assert.assertEquals(ip.getTextForElementAtIndex(ip.dsDropdown, 4), "Tree");
+		Assert.assertEquals(ip.getTextForElementAtIndex(ip.dsDropdown, 5), "Graph");
+		LoggerLoad.info("All drop down items verified");
 	}
 
 	//Select Array Drop Down item before sign in 
@@ -50,11 +50,12 @@ public class HomeTest extends BaseClass {
 		Assert.assertTrue(ip.validateElementDisplayed(ip.authenticationmsg));
 		Assert.assertEquals(ip.getTextForElement(ip.authenticationmsg), "You are not logged in");
 		Assert.assertEquals(ip.getElementSize(ip.authenticationmsg), 1);
+		
 	
 	}
 	
 	//Select Linked List Drop Down item before sign in 
-	@Test(priority=2)
+	@Test(priority=3)
 	public void testSelectLinkedListDropDownItem() {
 	
 	ip.clickDropdownToggle();
@@ -67,7 +68,7 @@ public class HomeTest extends BaseClass {
 	
 	}
 	
-	@Test(priority=3)
+	@Test(priority=4)
 	public void testSelectStackDropDownItem() {
 		ip.clickDropdownToggle();
 		LoggerLoad.info("Drop Down toggle clicked");
@@ -79,7 +80,7 @@ public class HomeTest extends BaseClass {
 		
 	}
 	
-	@Test(priority=4)
+	@Test(priority=5)
 	public void testSelectQueueDropDownItem() {
 		ip.clickDropdownToggle();
 		LoggerLoad.info("Drop Down toggle clicked");
@@ -91,7 +92,7 @@ public class HomeTest extends BaseClass {
 		
 	}
 	
-	@Test(priority=5)
+	@Test(priority=6)
 	public void testSelectTreeDropDownItem() {
 		ip.clickDropdownToggle();
 		LoggerLoad.info("Drop Down toggle clicked");
@@ -103,7 +104,7 @@ public class HomeTest extends BaseClass {
 		
 	}
 	
-	@Test(priority=6)
+	@Test(priority=7)
 	public void testSelectGrapheDropDownItem() {
 		ip.clickDropdownToggle();
 		LoggerLoad.info("Drop Down toggle clicked");
@@ -115,7 +116,7 @@ public class HomeTest extends BaseClass {
 		
 	}
 	
-	@Test(priority=6)
+	@Test(priority=8)
 	public void testGetStartedButtonOnDsIntroPage() {
 		ip.clickOnDataStructuresGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for DS-Intro");
@@ -125,7 +126,7 @@ public class HomeTest extends BaseClass {
 			
 	}
 	
-	@Test(priority=7)
+	@Test(priority=9)
 	public void testGetStartedButtonOnArrayPage() {
 		ip.clickOnArrayGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for Array");
@@ -135,7 +136,7 @@ public class HomeTest extends BaseClass {
 			
 	}
 	
-	@Test(priority=8)
+	@Test(priority=10)
 	public void testGetStartedButtonLinkedListPage() {
 		ip.clickOnLinkedListGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for Linked List");
@@ -145,7 +146,7 @@ public class HomeTest extends BaseClass {
 			
 	}
 	
-	@Test(priority=9)
+	@Test(priority=11)
 	public void testGetStartedButtonOnStackPage() {
 		ip.clickOnStackGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for Stack");
@@ -155,7 +156,7 @@ public class HomeTest extends BaseClass {
 			
 	}
 	
-	@Test(priority=10)
+	@Test(priority=12)
 	public void testGetStartedButtonOnQueuePage() {
 		ip.clickOnQueueGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for Queue");
@@ -165,7 +166,7 @@ public class HomeTest extends BaseClass {
 			
 	}
 	
-	@Test(priority=11)
+	@Test(priority=13)
 	public void testGetStartedButtonOnTreePage() {
 		ip.clickOnTreeGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for Tree");
@@ -176,7 +177,7 @@ public class HomeTest extends BaseClass {
 	}
 	
 	
-	@Test(priority=12)
+	@Test(priority=14)
 	public void testGetStartedButtonOnGraphPage() {
 		ip.clickOnGraphGetStartedBtn();
 		LoggerLoad.info("Get Started Button clicked for Graph");
