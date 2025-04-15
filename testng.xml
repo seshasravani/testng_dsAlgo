@@ -38,7 +38,7 @@
             <class name="testcases.LoginTest"/>
             <class name="testcases.QueueTest"/>
             <class name="testcases.RegisterTest"/>
-            <class name="testcases.stackTest"/>
+            <class name="testcases.StackTest"/>
             <class name="testcases.TreeTest"/>
         </classes>
     </test>
@@ -55,7 +55,7 @@
             <class name="testcases.LoginTest"/>
             <class name="testcases.QueueTest"/>
             <class name="testcases.RegisterTest"/>
-            <class name="testcases.stackTest"/>
+            <class name="testcases.StackTest"/>
             <class name="testcases.TreeTest"/>
         </classes>
     </test>

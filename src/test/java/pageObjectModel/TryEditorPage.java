@@ -2,19 +2,9 @@ package pageObjectModel;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-
-
 import driverManager.DriverManager;
 import utilities.CommonUtils;
 import utilities.LoggerLoad;
-
-import java.time.Duration;
-
-
-
 
 public class TryEditorPage {
 
@@ -26,18 +16,6 @@ public class TryEditorPage {
 	private final By tryEditorOutput = By.xpath("//pre[@id='output']");
 
 	private String actualResult;
-
-	/*
-	 * public void enterCode(String code) throws InterruptedException { Actions
-	 * action = new Actions(driver); WebElement codeEditor =
-	 * driver.findElement(codeEditorPage);
-	 * 
-	 * action.moveToElement(codeEditor).click()
-	 * .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
-	 * .sendKeys(Keys.BACK_SPACE) .perform();
-	 * 
-	 * action.sendKeys(code).perform(); }
-	 */
 	
 	 public void enterCode(String code) throws InterruptedException {
 	        LoggerLoad.info("Entering code into the editor.");
@@ -45,12 +23,12 @@ public class TryEditorPage {
 	            WebElement codeEditor = driver.findElement(codeEditorPage);
 	            Actions action = new Actions(driver);
 
-	            // Clear the editor before entering code
+	            
 	            action.moveToElement(codeEditor).click()
 	                  .keyDown(Keys.CONTROL).sendKeys("a").keyUp(Keys.CONTROL)
 	                  .sendKeys(Keys.BACK_SPACE).perform();
 	            
-	            // Enter the code
+	          
 	            action.sendKeys(code).perform();
 	            LoggerLoad.info("Code entered successfully.");
 	        } catch (Exception e) {
@@ -61,9 +39,9 @@ public class TryEditorPage {
 	 public void clickRunButton() {
 	        LoggerLoad.info("Attempting to click the 'Run' button.");
 	        try {
-	            CommonUtils.clickElement(runButton);  // Using CommonUtils click method
+	            CommonUtils.clickElement(runButton);  
 	            LoggerLoad.info("Clicked the 'Run' button.");
-	            isAlertPresent();  // Check if an alert appears after running the code
+	            isAlertPresent(); 
 	        } catch (Exception e) {
 	            LoggerLoad.error("Failed to click the 'Run' button: " + e.getMessage());
 	        }
@@ -85,13 +63,13 @@ public class TryEditorPage {
 	    public String output() {
 	        LoggerLoad.info("Attempting to retrieve output.");
 	        try {
-	            // Check if there is an alert
+	          
 	            Alert alert = driver.switchTo().alert();
 	            actualResult = alert.getText();
 	            LoggerLoad.info("Alert message of invalid code: " + actualResult);
 	            alert.accept();
 	        } catch (NoAlertPresentException e) {
-	            // If no alert, retrieve the output from the page
+	            
 	            WebElement outputElement = driver.findElement(tryEditorOutput);
 	            actualResult = outputElement.getText();
 	            LoggerLoad.info("Actual result of valid code: " + actualResult);
