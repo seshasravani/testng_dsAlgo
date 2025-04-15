@@ -31,6 +31,13 @@
             <artifactId>webdrivermanager</artifactId>
             <version>6.0.0</version>
         </dependency>
+        
+        
+        <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    <version>4.17.0</version> <!-- or latest stable -->
+         </dependency>
 
         <!-- ✅ TestNG -->
         <dependency>
@@ -150,6 +157,21 @@
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
+            
+            
+                <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-shade-plugin</artifactId>
+      <version>3.2.4</version>
+      <executions>
+        <execution>
+          <phase>package</phase>
+          <goals>
+            <goal>shade</goal>
+          </goals>
+        </execution>
+      </executions>
+    </plugin>
 
             <!-- ✅ Allure Report Plugin -->
             <plugin>
